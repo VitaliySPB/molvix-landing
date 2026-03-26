@@ -14,3 +14,45 @@ import * as zod from "zod";
 export const HealthCheckResponse = zod.object({
   status: zod.string(),
 });
+
+/**
+ * Submit a request for a product demo
+ * @summary Submit demo request
+ */
+export const submitDemoRequestBodyNameMin = 2;
+export const submitDemoRequestBodyNameMax = 100;
+
+export const submitDemoRequestBodyCompanyMax = 200;
+
+export const submitDemoRequestBodyRoleMax = 100;
+
+export const submitDemoRequestBodyMessageMax = 1000;
+
+export const SubmitDemoRequestBody = zod.object({
+  name: zod
+    .string()
+    .min(submitDemoRequestBodyNameMin)
+    .max(submitDemoRequestBodyNameMax),
+  email: zod.string().email(),
+  company: zod.string().min(1).max(submitDemoRequestBodyCompanyMax),
+  role: zod.string().max(submitDemoRequestBodyRoleMax).optional(),
+  message: zod.string().max(submitDemoRequestBodyMessageMax).optional(),
+});
+
+/**
+ * Get all submitted demo requests
+ * @summary List demo requests
+ */
+export const ListDemoRequestsResponse = zod.object({
+  requests: zod.array(
+    zod.object({
+      id: zod.number(),
+      name: zod.string(),
+      email: zod.string(),
+      company: zod.string(),
+      role: zod.string().nullish(),
+      message: zod.string().nullish(),
+      createdAt: zod.date(),
+    }),
+  ),
+});

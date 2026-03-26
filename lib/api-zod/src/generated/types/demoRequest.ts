@@ -5,9 +5,6 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
-export interface HealthStatus {
-  status: string;
-}
 
 export interface DemoRequest {
   /**
@@ -26,22 +23,3 @@ export interface DemoRequest {
   /** @maxLength 1000 */
   message?: string;
 }
-
-export interface DemoRequestResponse {
-  id: number;
-  name: string;
-  email: string;
-  company: string;
-  role?: string | null;
-  message?: string | null;
-  createdAt: string;
-}
-
-export interface ErrorResponse {
-  error: string;
-  details?: string[];
-}
-
-export type ListDemoRequests200 = {
-  requests: DemoRequestResponse[];
-};

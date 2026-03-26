@@ -6,4 +6,8 @@
  * OpenAPI spec version: 0.1.0
  */
 
+export * from "./demoRequest";
+export * from "./demoRequestResponse";
+export * from "./errorResponse";
 export * from "./healthStatus";
+export * from "./listDemoRequests200";

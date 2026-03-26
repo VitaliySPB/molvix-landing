@@ -10,6 +10,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: demo
+    description: Demo request operations
 paths:
   /healthz:
     get:
@@ -24,6 +26,50 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /demo-requests:
+    post:
+      operationId: submitDemoRequest
+      tags: [demo]
+      summary: Submit demo request
+      description: Submit a request for a product demo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DemoRequest"
+      responses:
+        "201":
+          description: Demo request submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DemoRequestResponse"
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    get:
+      operationId: listDemoRequests
+      tags: [demo]
+      summary: List demo requests
+      description: Get all submitted demo requests
+      responses:
+        "200":
+          description: List of demo requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  requests:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/DemoRequestResponse"
+                required:
+                  - requests
 components:
   schemas:
     HealthStatus:
@@ -33,4 +79,64 @@ components:
           type: string
       required:
         - status
-
+    DemoRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 2
+          maxLength: 100
+        email:
+          type: string
+          format: email
+        company:
+          type: string
+          minLength: 1
+          maxLength: 200
+        role:
+          type: string
+          maxLength: 100
+        message:
+          type: string
+          maxLength: 1000
+      required:
+        - name
+        - email
+        - company
+    DemoRequestResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        company:
+          type: string
+        role:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - email
+        - company
+        - createdAt
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        details:
+          type: array
+          items:
+            type: string
+      required:
+        - error

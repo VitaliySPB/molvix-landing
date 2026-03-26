@@ -48,6 +48,16 @@ Every package extends `tsconfig.base.json` which sets `composite: true`. The roo
 - `pnpm run build` — runs `typecheck` first, then recursively runs `build` in all packages that define it
 - `pnpm run typecheck` — runs `tsc --build --emitDeclarationOnly` using project references
 
+## Artifacts
+
+### `artifacts/event-orchestrator` (`@workspace/event-orchestrator`)
+
+React + Vite landing page for Event Orchestrator product. Single-page site with:
+- Hero section, social proof bar, "How it works" steps, features grid
+- Demo request form (name, email, company, role, message) — submits to `/api/demo-requests`
+- Smooth scroll navigation, framer-motion animations, lucide-react icons
+- Fonts: Inter (body) + Outfit (display), minimal monochrome palette
+
 ## Packages
 
 ### `artifacts/api-server` (`@workspace/api-server`)

@@ -1,0 +1,14 @@
+packages:
+  "framer-motion": "For elegant scroll animations and layout transitions"
+  "react-hook-form": "For form state management"
+  "@hookform/resolvers": "For strict form validation"
+  "zod": "For schema validation matching OpenAPI specs"
+  "lucide-react": "For crisp, modern iconography"
+  "clsx": "For conditional class merging"
+  "tailwind-merge": "For tailwind class merging"
+
+images: []
+
+notes:
+  - using @workspace/api-client-react for TanStack queries and mutations
+  - assuming shadcn UI components exist in src/components/ui/
