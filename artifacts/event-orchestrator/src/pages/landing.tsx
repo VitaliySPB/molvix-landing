@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "wouter";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { 
-  Network, Zap, Activity, ShieldCheck, 
-  Users, History, ArrowRight, CheckCircle2, 
-  Workflow, ArrowUpRight
+  QrCode, BarChart3, Bell, Users, 
+  ShieldCheck, ArrowRight, CheckCircle2, 
+  Workflow, CalendarDays, TrendingUp, Target
 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -25,7 +25,6 @@ import {
 } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 
-// Form Schema matching OpenAPI specifications
 const demoFormSchema = z.object({
   name: z.string().min(2, "Имя должно содержать не менее 2 символов").max(100),
   email: z.string().email("Введите корректный email-адрес"),
@@ -37,18 +36,15 @@ const demoFormSchema = z.object({
 type DemoFormValues = z.infer<typeof demoFormSchema>;
 
 export default function LandingPage() {
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 500], [0, 150]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
-
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
       <main className="flex-grow">
-        <HeroSection y={y} opacity={opacity} />
-        <SocialProofSection />
+        <HeroSection />
+        <ProblemSection />
         <HowItWorksSection />
         <FeaturesSection />
+        <MetricsSection />
         <DemoSection />
       </main>
       <Footer />
@@ -66,7 +62,7 @@ function Navbar() {
   }, []);
 
   return (
-    <header 
+    <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? "glass py-4" : "bg-transparent py-6"
       }`}
@@ -76,13 +72,15 @@ function Navbar() {
           <div className="w-8 h-8 bg-primary text-primary-foreground rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
             <Workflow className="w-4 h-4" />
           </div>
-          <span className="font-display font-semibold text-xl tracking-tight">
-            Event Orchestrator
-          </span>
+          <div className="flex flex-col leading-none">
+            <span className="font-display font-semibold text-base tracking-tight">EOS</span>
+            <span className="text-[10px] text-muted-foreground tracking-widest uppercase font-medium">Event Operating System</span>
+          </div>
         </Link>
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Как это работает</a>
+          <a href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Как работает</a>
           <a href="#features" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Возможности</a>
+          <a href="#metrics" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Результаты</a>
           <Button asChild size="sm" className="rounded-full px-6 shadow-sm">
             <a href="#demo">Запросить демо</a>
           </Button>
@@ -92,37 +90,34 @@ function Navbar() {
   );
 }
 
-function HeroSection({ y, opacity }: { y: any, opacity: any }) {
+function HeroSection() {
   return (
-    <section className="relative pt-48 pb-32 overflow-hidden flex items-center min-h-[90vh]">
-      {/* Decorative ambient background */}
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-[120px] -z-10 opacity-40" style={{ background: 'radial-gradient(ellipse, hsl(240 5% 92%) 0%, transparent 70%)' }} />
-      
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full">
-        <motion.div 
-          style={{ y, opacity }}
+    <section className="relative pt-48 pb-32 flex items-center min-h-[90vh]">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-4xl"
+          className="max-w-5xl"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/80 border border-border/50 text-sm font-medium text-muted-foreground mb-8">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-foreground opacity-20"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-foreground"></span>
             </span>
-            Event Orchestrator 2.0 доступен
+            MVP готов · Ищем первых пилотных клиентов
           </div>
-          
+
           <h1 className="text-5xl sm:text-6xl md:text-8xl font-display font-medium tracking-tight text-foreground leading-[1.05] mb-8">
-            Управляйте событиями <br className="hidden md:block" />
-            <span className="text-muted-foreground">с абсолютной ясностью.</span>
+            Событие длится один день.
+            <br />
+            <span className="text-muted-foreground">Отношения с аудиторией — годами.</span>
           </h1>
-          
-          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl mb-12">
-            Платформа корпоративного уровня для управления, запуска и мониторинга событийных процессов в распределённых системах.
+
+          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mb-12">
+            EOS — операционная система для мероприятий. Мобильное приложение для участников и веб-панель для организаторов, которые превращают одноразовое событие в долгосрочную аудиторию.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row items-start gap-4">
             <Button asChild size="lg" className="rounded-full px-8 h-14 text-base shadow-lg hover:shadow-xl transition-all">
               <a href="#demo">
@@ -141,21 +136,48 @@ function HeroSection({ y, opacity }: { y: any, opacity: any }) {
   );
 }
 
-function SocialProofSection() {
-  const companies = ["Acme Corp", "GlobalTech", "Quantum", "Nexus", "Starlight", "Horizon"];
-  
+function ProblemSection() {
+  const facts = [
+    { label: "Email-листа", value: "15–20%", desc: "открываемость через неделю после события" },
+    { label: "Telegram-группы", value: "3–5 дней", desc: "до нулевой активности" },
+    { label: "Данных об аудитории", value: "≈ 0", desc: "кто готов купить снова — неизвестно" },
+    { label: "Стоимость привлечения", value: "~4000 ₽", desc: "на одного участника, которого вы теряете" },
+  ];
+
   return (
-    <section className="py-12 border-y border-border/40 bg-background/50 backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
-        <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest whitespace-nowrap">
-          Доверяют команды из
-        </p>
-        <div className="flex flex-wrap justify-center gap-x-12 gap-y-6 opacity-60 grayscale">
-          {companies.map((company, i) => (
-            <span key={i} className="font-display font-bold text-xl md:text-2xl tracking-tighter text-foreground">
-              {company}
-            </span>
-          ))}
+    <section className="py-24 border-t border-border/40">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Реальная проблема</p>
+            <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-6">
+              Организаторы начинают каждое событие с нуля.
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+              Вы потратили сотни тысяч рублей на привлечение аудитории. Провели с ней один день. И через неделю не знаете ни одного из них по имени.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Следующее событие начинается с той же точки — заново покупая ту же аудиторию. Это не проблема удержания. Это сломанная механика.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            {facts.map((fact, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+              >
+                <Card className="p-6 bg-background border-border/50 h-full">
+                  <p className="text-3xl font-display font-semibold text-foreground mb-1">{fact.value}</p>
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">{fact.label}</p>
+                  <p className="text-sm text-muted-foreground leading-snug">{fact.desc}</p>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -163,62 +185,77 @@ function SocialProofSection() {
 }
 
 function HowItWorksSection() {
-  const steps = [
+  const phases = [
     {
       num: "01",
-      title: "Подключите",
-      desc: "Интегрируйте существующие микросервисы и очереди сообщений с помощью одной строки конфигурации.",
-      icon: Network
+      label: "До события",
+      title: "Участник уже внутри — до начала.",
+      desc: "Программа, материалы и профили других участников в телефоне. QR-код для входа без очередей. Организатор настраивает всё за 20 минут без разработчика.",
+      items: ["Программа и расписание в приложении", "Биографии спикеров и тезисы", "Профили участников — кто придёт", "QR-код вместо бумажного бейджа"],
+      icon: CalendarDays
     },
     {
       num: "02",
-      title: "Оркестрируйте",
-      desc: "Задавайте сложные правила маршрутизации, трансформации и сценарии восстановления — визуально или через код.",
-      icon: Workflow
+      label: "В день события",
+      title: "Участник получает больше, чем ожидал.",
+      desc: "QR-нетворкинг, живая программа, тематические комнаты, материалы спикеров. Человек который познакомился с 8 людьми — вернётся завтра.",
+      items: ["QR-нетворкинг без визиток и Telegram", "Живая программа с мгновенными изменениями", "Тематические комнаты внутри события", "Материалы спикеров — скачать прямо сейчас"],
+      icon: Users
     },
     {
       num: "03",
-      title: "Контролируйте",
-      desc: "Получите беспрецедентную наблюдаемость за каждым событием, трейсом и процессом в реальном времени.",
-      icon: Activity
-    }
+      label: "После события",
+      title: "Аудитория не исчезла — она активна.",
+      desc: "Retention-дашборд, поведенческая аналитика, скоринг участников. CAC на повторное приглашение = 0 рублей. Вы знаете кто готов купить снова.",
+      items: ["Retention D+1 / D+7 / D+14 / D+30", "Скоринг участников 0–100 по готовности", "Сегментированные рассылки по интересам", "Повторные приглашения одним кликом"],
+      icon: TrendingUp
+    },
   ];
 
   return (
     <section id="how-it-works" className="py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="mb-20 max-w-2xl">
+        <div className="mb-20 max-w-3xl">
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Три фазы жизненного цикла</p>
           <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-6">
-            Сложность — просто.
+            Retention нельзя включить после. Он начинается до.
           </h2>
           <p className="text-xl text-muted-foreground">
-            Event Orchestrator создан, чтобы убрать хаос из событийных архитектур и вернуть вам контроль.
+            Каждая фаза — необходимое условие для следующей. Если участник не получил ценность в день события — он не вернётся после.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-          {/* Connecting line */}
-          <div className="hidden md:block absolute top-12 left-0 w-full h-[1px] bg-border" />
-          
-          {steps.map((step, i) => (
-            <motion.div 
+        <div className="space-y-6">
+          {phases.map((phase, i) => (
+            <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative z-10"
             >
-              <div className="w-24 h-24 rounded-3xl bg-secondary border border-border/50 flex items-center justify-center mb-8 shadow-sm group hover:border-primary/20 transition-colors">
-                <step.icon className="w-8 h-8 text-foreground group-hover:scale-110 transition-transform duration-300" />
-              </div>
-              <h3 className="text-2xl font-display font-medium mb-3 flex items-center gap-3">
-                <span className="text-sm font-mono text-muted-foreground bg-secondary px-2 py-1 rounded">{step.num}</span>
-                {step.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {step.desc}
-              </p>
+              <Card className="p-8 md:p-10 border-border/50 hover:border-border transition-colors duration-300">
+                <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 items-start">
+                  <div>
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="text-xs font-mono text-muted-foreground bg-secondary px-2 py-1 rounded">{phase.num}</span>
+                      <span className="text-sm font-medium text-muted-foreground">{phase.label}</span>
+                    </div>
+                    <h3 className="text-2xl font-display font-medium leading-snug">{phase.title}</h3>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground leading-relaxed mb-6">{phase.desc}</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {phase.items.map((item, j) => (
+                        <div key={j} className="flex items-center gap-2 text-sm text-foreground">
+                          <CheckCircle2 className="w-4 h-4 text-muted-foreground shrink-0" />
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </Card>
             </motion.div>
           ))}
         </div>
@@ -229,12 +266,12 @@ function HowItWorksSection() {
 
 function FeaturesSection() {
   const features = [
-    { title: "Маршрутизация событий", desc: "Направляйте события к нужным сервисам мгновенно, на основе динамических данных.", icon: ArrowUpRight },
-    { title: "Умные триггеры", desc: "Задавайте правила, которые автоматически запускают процессы при наступлении нужных условий.", icon: Zap },
-    { title: "Наблюдаемость в реальном времени", desc: "Видите каждое событие, каждый шаг и каждый сбой — прямо сейчас.", icon: Activity },
-    { title: "Повторы и восстановление", desc: "Ни одно событие не будет потеряно. Встроенные очереди и интеллектуальные повторные попытки.", icon: History },
-    { title: "Командная работа", desc: "Делитесь процессами, пайплайнами и сценариями восстановления между командами.", icon: Users },
-    { title: "Аудит и соответствие", desc: "Полная история, контроль версий и ролевой доступ — всё встроено с первого дня.", icon: ShieldCheck }
+    { title: "QR-нетворкинг", desc: "Сканируешь QR человека — он появляется в контактах с полным профилем. Без визиток, без «напиши мне в Telegram».", icon: QrCode },
+    { title: "Live-дашборд", desc: "Сколько людей активны прямо сейчас, посещаемость сессий, вовлечённость, скачивания — в реальном времени.", icon: BarChart3 },
+    { title: "Push-уведомления", desc: "Изменение зала, важное объявление, пауза — мгновенно всем участникам или выбранной группе.", icon: Bell },
+    { title: "Скоринг аудитории", desc: "Каждый участник получает оценку от 0 до 100 по активности. Вы знаете кто «горячий» и готов к следующей покупке.", icon: Target },
+    { title: "Воронка участника", desc: "Приглашён → открыл → зарегистрировался → подтверждён → пришёл. Полная прозрачность на каждом шаге.", icon: TrendingUp },
+    { title: "Безопасный доступ", desc: "Контроль входа в реальном времени, управление доступом к материалам, журнал сканирования QR-кодов.", icon: ShieldCheck },
   ];
 
   return (
@@ -242,16 +279,14 @@ function FeaturesSection() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
           <div className="max-w-2xl">
+            <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Инструменты</p>
             <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-6">
-              Всё для масштабирования.
+              Два продукта в одном.
             </h2>
             <p className="text-xl text-muted-foreground">
-              Мощные инструменты берут на себя сложность распределённых систем, чтобы вы сосредоточились на продукте.
+              Мобильное приложение для участников и веб-панель для организаторов. CRM для живой аудитории с поведенческими данными — аналога на рынке СНГ нет.
             </p>
           </div>
-          <Button asChild variant="outline" className="rounded-full shrink-0">
-            <a href="#demo">Смотреть документацию</a>
-          </Button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -276,19 +311,51 @@ function FeaturesSection() {
   );
 }
 
+function MetricsSection() {
+  const metrics = [
+    { value: "D+30", label: "глубина retention-аналитики", desc: "Отслеживаем возврат аудитории через 1, 7, 14 и 30 дней после события" },
+    { value: "0 ₽", label: "CAC на повторное приглашение", desc: "Вся аудитория прошлого события одним кликом — без нового бюджета на привлечение" },
+    { value: "20 мин", label: "настройка события", desc: "Название, программа, сессии, спикеры, приглашения — без разработчика" },
+    { value: "× N", label: "событий в базе", desc: "Аудитории всех событий накапливаются и сегментируются в едином профиле" },
+  ];
+
+  return (
+    <section id="metrics" className="py-24 border-t border-border/40">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="mb-16 max-w-2xl">
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Что получает организатор</p>
+          <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight">
+            Аудитория как актив, а не расход.
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {metrics.map((m, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+              className="border-t-2 border-foreground/10 pt-6"
+            >
+              <p className="text-4xl font-display font-semibold text-foreground mb-1">{m.value}</p>
+              <p className="text-sm font-medium text-foreground/70 mb-3 uppercase tracking-wide">{m.label}</p>
+              <p className="text-sm text-muted-foreground leading-snug">{m.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function DemoSection() {
   const { toast } = useToast();
   const [isSuccess, setIsSuccess] = useState(false);
-  
+
   const form = useForm<DemoFormValues>({
     resolver: zodResolver(demoFormSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      company: "",
-      role: "",
-      message: ""
-    }
+    defaultValues: { name: "", email: "", company: "", role: "", message: "" },
   });
 
   const submitMutation = useSubmitDemoRequest();
@@ -297,17 +364,14 @@ function DemoSection() {
     submitMutation.mutate(
       { data },
       {
-        onSuccess: () => {
-          setIsSuccess(true);
-          form.reset();
-        },
+        onSuccess: () => { setIsSuccess(true); form.reset(); },
         onError: () => {
           toast({
             title: "Что-то пошло не так",
             description: "Не удалось отправить заявку. Пожалуйста, попробуйте ещё раз.",
-            variant: "destructive"
+            variant: "destructive",
           });
-        }
+        },
       }
     );
   };
@@ -315,38 +379,42 @@ function DemoSection() {
   return (
     <section id="demo" className="py-32 relative">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          
-          <div className="max-w-xl">
-            <h2 className="text-5xl md:text-7xl font-display font-medium tracking-tight mb-8">
-              Готовы увидеть в деле?
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          <div className="max-w-xl lg:sticky lg:top-32">
+            <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Пилотный запуск</p>
+            <h2 className="text-5xl md:text-6xl font-display font-medium tracking-tight mb-8">
+              Станьте первым.
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed mb-10">
-              Запросите персональное демо и узнайте, как Event Orchestrator привнесёт ясность и надёжность в вашу архитектуру.
+              EOS находится на стадии поиска первых пилотных клиентов. Мы работаем в ручном режиме, глубоко погружаясь в каждый запуск. Запросите демо — покажем продукт и обсудим вашу задачу.
             </p>
-            
+
             <div className="space-y-4">
               {[
-                "Персональный обзор платформы",
-                "Разбор архитектуры с нашими инженерами",
-                "Индивидуальные условия под ваш масштаб",
-                "Доступ к sandbox-среде"
+                "Персональный разбор вашего события",
+                "Настройка и запуск под вашу задачу",
+                "Прямой доступ к команде основателей",
+                "Участие в формировании продукта",
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3 text-foreground">
-                  <CheckCircle2 className="w-5 h-5 text-muted-foreground" />
+                  <CheckCircle2 className="w-5 h-5 text-muted-foreground shrink-0" />
                   <span className="font-medium">{item}</span>
                 </div>
               ))}
             </div>
+
+            <div className="mt-10 pt-8 border-t border-border/40">
+              <p className="text-sm text-muted-foreground">
+                Рынок: Россия · Казахстан · СНГ
+              </p>
+            </div>
           </div>
 
           <div className="relative">
-            {/* Decorative background behind card */}
             <div className="absolute inset-0 bg-gradient-to-tr from-secondary to-background rounded-[2rem] transform rotate-3 scale-105 -z-10 border border-border/50" />
-            
             <Card className="p-8 md:p-10 shadow-2xl shadow-black/5 bg-background border-border/60 rounded-3xl relative z-10">
               {isSuccess ? (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="py-16 text-center"
@@ -356,10 +424,10 @@ function DemoSection() {
                   </div>
                   <h3 className="text-2xl font-display font-medium mb-3">Заявка получена</h3>
                   <p className="text-muted-foreground">
-                    Спасибо! Наша команда рассмотрит заявку и скоро свяжется с вами для согласования демо.
+                    Спасибо! Мы свяжемся с вами в ближайшее время, чтобы согласовать демо.
                   </p>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     className="mt-8 rounded-full"
                     onClick={() => setIsSuccess(false)}
                   >
@@ -368,8 +436,12 @@ function DemoSection() {
                 </motion.div>
               ) : (
                 <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="mb-6">
+                    <h3 className="text-xl font-display font-medium mb-1">Запросить демо</h3>
+                    <p className="text-sm text-muted-foreground">Расскажите о вашем событии — мы подготовимся</p>
+                  </div>
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <FormField
                         control={form.control}
                         name="name"
@@ -397,8 +469,8 @@ function DemoSection() {
                         )}
                       />
                     </div>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <FormField
                         control={form.control}
                         name="company"
@@ -406,7 +478,7 @@ function DemoSection() {
                           <FormItem>
                             <FormLabel className="text-foreground/80 font-medium">Компания</FormLabel>
                             <FormControl>
-                              <Input placeholder="ООО Ромашка" className="h-12 bg-secondary/30 rounded-xl" {...field} />
+                              <Input placeholder="Название организации" className="h-12 bg-secondary/30 rounded-xl" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -419,7 +491,7 @@ function DemoSection() {
                           <FormItem>
                             <FormLabel className="text-foreground/80 font-medium">Должность <span className="text-muted-foreground font-normal">(необязательно)</span></FormLabel>
                             <FormControl>
-                              <Input placeholder="CTO, VP Engineering..." className="h-12 bg-secondary/30 rounded-xl" {...field} />
+                              <Input placeholder="Организатор, директор..." className="h-12 bg-secondary/30 rounded-xl" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -432,12 +504,12 @@ function DemoSection() {
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-foreground/80 font-medium">Сообщение <span className="text-muted-foreground font-normal">(необязательно)</span></FormLabel>
+                          <FormLabel className="text-foreground/80 font-medium">О вашем событии <span className="text-muted-foreground font-normal">(необязательно)</span></FormLabel>
                           <FormControl>
-                            <Textarea 
-                              placeholder="Расскажите о вашей текущей архитектуре..." 
-                              className="min-h-[120px] bg-secondary/30 rounded-xl resize-none" 
-                              {...field} 
+                            <Textarea
+                              placeholder="Расскажите: какой формат, сколько участников, как часто проводите..."
+                              className="min-h-[110px] bg-secondary/30 rounded-xl resize-none"
+                              {...field}
                             />
                           </FormControl>
                           <FormMessage />
@@ -445,8 +517,8 @@ function DemoSection() {
                       )}
                     />
 
-                    <Button 
-                      type="submit" 
+                    <Button
+                      type="submit"
                       className="w-full h-14 rounded-xl text-base shadow-md hover:shadow-lg transition-all"
                       disabled={submitMutation.isPending}
                     >
@@ -469,10 +541,13 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-2">
           <Workflow className="w-5 h-5" />
-          <span className="font-display font-semibold tracking-tight">Event Orchestrator</span>
+          <div className="flex flex-col leading-none">
+            <span className="font-display font-semibold tracking-tight text-sm">EOS</span>
+            <span className="text-[10px] text-muted-foreground tracking-widest uppercase">Event Operating System</span>
+          </div>
         </div>
         <p className="text-muted-foreground text-sm">
-          © {new Date().getFullYear()} Event Orchestrator. Все права защищены.
+          © {new Date().getFullYear()} EOS. Все права защищены.
         </p>
       </div>
     </footer>
