@@ -27,9 +27,9 @@ import { useToast } from "@/hooks/use-toast";
 
 // Form Schema matching OpenAPI specifications
 const demoFormSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters").max(100),
-  email: z.string().email("Please enter a valid email address"),
-  company: z.string().min(1, "Company name is required").max(200),
+  name: z.string().min(2, "Имя должно содержать не менее 2 символов").max(100),
+  email: z.string().email("Введите корректный email-адрес"),
+  company: z.string().min(1, "Укажите название компании").max(200),
   role: z.string().max(100).optional(),
   message: z.string().max(1000).optional(),
 });
@@ -81,10 +81,10 @@ function Navbar() {
           </span>
         </Link>
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">How it works</a>
-          <a href="#features" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Features</a>
+          <a href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Как это работает</a>
+          <a href="#features" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Возможности</a>
           <Button asChild size="sm" className="rounded-full px-6 shadow-sm">
-            <a href="#demo">Request Demo</a>
+            <a href="#demo">Запросить демо</a>
           </Button>
         </nav>
       </div>
@@ -111,27 +111,27 @@ function HeroSection({ y, opacity }: { y: any, opacity: any }) {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-foreground opacity-20"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-foreground"></span>
             </span>
-            Event Orchestrator 2.0 is live
+            Event Orchestrator 2.0 доступен
           </div>
           
           <h1 className="text-5xl sm:text-6xl md:text-8xl font-display font-medium tracking-tight text-foreground leading-[1.05] mb-8">
-            Orchestrate events <br className="hidden md:block" />
-            <span className="text-muted-foreground">with absolute clarity.</span>
+            Управляйте событиями <br className="hidden md:block" />
+            <span className="text-muted-foreground">с абсолютной ясностью.</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl mb-12">
-            The enterprise-grade platform to manage, trigger, and monitor event-driven workflows across your entire distributed architecture.
+            Платформа корпоративного уровня для управления, запуска и мониторинга событийных процессов в распределённых системах.
           </p>
           
           <div className="flex flex-col sm:flex-row items-start gap-4">
             <Button asChild size="lg" className="rounded-full px-8 h-14 text-base shadow-lg hover:shadow-xl transition-all">
               <a href="#demo">
-                Request a Demo <ArrowRight className="ml-2 w-4 h-4" />
+                Запросить демо <ArrowRight className="ml-2 w-4 h-4" />
               </a>
             </Button>
             <Button asChild variant="outline" size="lg" className="rounded-full px-8 h-14 text-base bg-transparent border-border/60 hover:bg-secondary/50">
               <a href="#how-it-works">
-                See how it works
+                Как это работает
               </a>
             </Button>
           </div>
@@ -148,7 +148,7 @@ function SocialProofSection() {
     <section className="py-12 border-y border-border/40 bg-background/50 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
         <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest whitespace-nowrap">
-          Trusted by engineering teams at
+          Доверяют команды из
         </p>
         <div className="flex flex-wrap justify-center gap-x-12 gap-y-6 opacity-60 grayscale">
           {companies.map((company, i) => (
@@ -166,20 +166,20 @@ function HowItWorksSection() {
   const steps = [
     {
       num: "01",
-      title: "Connect",
-      desc: "Integrate your existing microservices and message queues with a single line of configuration.",
+      title: "Подключите",
+      desc: "Интегрируйте существующие микросервисы и очереди сообщений с помощью одной строки конфигурации.",
       icon: Network
     },
     {
       num: "02",
-      title: "Orchestrate",
-      desc: "Define complex routing rules, transformations, and recovery playbooks visually or via code.",
+      title: "Оркестрируйте",
+      desc: "Задавайте сложные правила маршрутизации, трансформации и сценарии восстановления — визуально или через код.",
       icon: Workflow
     },
     {
       num: "03",
-      title: "Monitor",
-      desc: "Gain unprecedented observability into every event, trace, and workflow in real-time.",
+      title: "Контролируйте",
+      desc: "Получите беспрецедентную наблюдаемость за каждым событием, трейсом и процессом в реальном времени.",
       icon: Activity
     }
   ];
@@ -189,10 +189,10 @@ function HowItWorksSection() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="mb-20 max-w-2xl">
           <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-6">
-            Complexity made simple.
+            Сложность — просто.
           </h2>
           <p className="text-xl text-muted-foreground">
-            We built Event Orchestrator to remove the chaos from event-driven architectures, giving you back control.
+            Event Orchestrator создан, чтобы убрать хаос из событийных архитектур и вернуть вам контроль.
           </p>
         </div>
 
@@ -229,12 +229,12 @@ function HowItWorksSection() {
 
 function FeaturesSection() {
   const features = [
-    { title: "Event Routing", desc: "Route events to the right services instantly based on dynamic payloads.", icon: ArrowUpRight },
-    { title: "Smart Triggers", desc: "Define rules that fire workflows automatically when exact conditions are met.", icon: Zap },
-    { title: "Real-time Observability", desc: "See every event, every step, and every failure in absolute real time.", icon: Activity },
-    { title: "Retry & Recovery", desc: "Never lose an event. Built-in dead letter queues and intelligent retries.", icon: History },
-    { title: "Team Collaboration", desc: "Share workflows, pipelines, and recovery playbooks across engineering squads.", icon: Users },
-    { title: "Audit & Compliance", desc: "Full history, version control, and RBAC access control built right in.", icon: ShieldCheck }
+    { title: "Маршрутизация событий", desc: "Направляйте события к нужным сервисам мгновенно, на основе динамических данных.", icon: ArrowUpRight },
+    { title: "Умные триггеры", desc: "Задавайте правила, которые автоматически запускают процессы при наступлении нужных условий.", icon: Zap },
+    { title: "Наблюдаемость в реальном времени", desc: "Видите каждое событие, каждый шаг и каждый сбой — прямо сейчас.", icon: Activity },
+    { title: "Повторы и восстановление", desc: "Ни одно событие не будет потеряно. Встроенные очереди и интеллектуальные повторные попытки.", icon: History },
+    { title: "Командная работа", desc: "Делитесь процессами, пайплайнами и сценариями восстановления между командами.", icon: Users },
+    { title: "Аудит и соответствие", desc: "Полная история, контроль версий и ролевой доступ — всё встроено с первого дня.", icon: ShieldCheck }
   ];
 
   return (
@@ -243,14 +243,14 @@ function FeaturesSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
           <div className="max-w-2xl">
             <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-6">
-              Everything you need to scale.
+              Всё для масштабирования.
             </h2>
             <p className="text-xl text-muted-foreground">
-              Powerful primitives that handle the heavy lifting of distributed systems so you can focus on product logic.
+              Мощные инструменты берут на себя сложность распределённых систем, чтобы вы сосредоточились на продукте.
             </p>
           </div>
           <Button asChild variant="outline" className="rounded-full shrink-0">
-            <a href="#demo">View Full Documentation</a>
+            <a href="#demo">Смотреть документацию</a>
           </Button>
         </div>
 
@@ -303,8 +303,8 @@ function DemoSection() {
         },
         onError: () => {
           toast({
-            title: "Something went wrong",
-            description: "Failed to submit demo request. Please try again.",
+            title: "Что-то пошло не так",
+            description: "Не удалось отправить заявку. Пожалуйста, попробуйте ещё раз.",
             variant: "destructive"
           });
         }
@@ -319,18 +319,18 @@ function DemoSection() {
           
           <div className="max-w-xl">
             <h2 className="text-5xl md:text-7xl font-display font-medium tracking-tight mb-8">
-              Ready to see it in action?
+              Готовы увидеть в деле?
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed mb-10">
-              Request a personalized demo and discover how Event Orchestrator can bring clarity and reliability to your architecture.
+              Запросите персональное демо и узнайте, как Event Orchestrator привнесёт ясность и надёжность в вашу архитектуру.
             </p>
             
             <div className="space-y-4">
               {[
-                "Personalized platform walkthrough",
-                "Architecture review with our engineers",
-                "Custom pricing based on your scale",
-                "Access to sandbox environment"
+                "Персональный обзор платформы",
+                "Разбор архитектуры с нашими инженерами",
+                "Индивидуальные условия под ваш масштаб",
+                "Доступ к sandbox-среде"
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3 text-foreground">
                   <CheckCircle2 className="w-5 h-5 text-muted-foreground" />
@@ -354,16 +354,16 @@ function DemoSection() {
                   <div className="w-16 h-16 bg-secondary text-foreground rounded-full flex items-center justify-center mx-auto mb-6">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <h3 className="text-2xl font-display font-medium mb-3">Request Received</h3>
+                  <h3 className="text-2xl font-display font-medium mb-3">Заявка получена</h3>
                   <p className="text-muted-foreground">
-                    Thank you! Our team will review your request and be in touch shortly to schedule your demo.
+                    Спасибо! Наша команда рассмотрит заявку и скоро свяжется с вами для согласования демо.
                   </p>
                   <Button 
                     variant="outline" 
                     className="mt-8 rounded-full"
                     onClick={() => setIsSuccess(false)}
                   >
-                    Submit another request
+                    Отправить ещё одну заявку
                   </Button>
                 </motion.div>
               ) : (
@@ -375,9 +375,9 @@ function DemoSection() {
                         name="name"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-foreground/80 font-medium">Full Name</FormLabel>
+                            <FormLabel className="text-foreground/80 font-medium">Имя и фамилия</FormLabel>
                             <FormControl>
-                              <Input placeholder="Jane Doe" className="h-12 bg-secondary/30 rounded-xl" {...field} />
+                              <Input placeholder="Иван Петров" className="h-12 bg-secondary/30 rounded-xl" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -388,9 +388,9 @@ function DemoSection() {
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-foreground/80 font-medium">Work Email</FormLabel>
+                            <FormLabel className="text-foreground/80 font-medium">Рабочий email</FormLabel>
                             <FormControl>
-                              <Input placeholder="jane@company.com" className="h-12 bg-secondary/30 rounded-xl" {...field} />
+                              <Input placeholder="ivan@company.com" className="h-12 bg-secondary/30 rounded-xl" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -404,9 +404,9 @@ function DemoSection() {
                         name="company"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-foreground/80 font-medium">Company</FormLabel>
+                            <FormLabel className="text-foreground/80 font-medium">Компания</FormLabel>
                             <FormControl>
-                              <Input placeholder="Acme Corp" className="h-12 bg-secondary/30 rounded-xl" {...field} />
+                              <Input placeholder="ООО Ромашка" className="h-12 bg-secondary/30 rounded-xl" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -417,9 +417,9 @@ function DemoSection() {
                         name="role"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-foreground/80 font-medium">Role <span className="text-muted-foreground font-normal">(Optional)</span></FormLabel>
+                            <FormLabel className="text-foreground/80 font-medium">Должность <span className="text-muted-foreground font-normal">(необязательно)</span></FormLabel>
                             <FormControl>
-                              <Input placeholder="CTO, VP Eng..." className="h-12 bg-secondary/30 rounded-xl" {...field} />
+                              <Input placeholder="CTO, VP Engineering..." className="h-12 bg-secondary/30 rounded-xl" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -432,10 +432,10 @@ function DemoSection() {
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-foreground/80 font-medium">Message <span className="text-muted-foreground font-normal">(Optional)</span></FormLabel>
+                          <FormLabel className="text-foreground/80 font-medium">Сообщение <span className="text-muted-foreground font-normal">(необязательно)</span></FormLabel>
                           <FormControl>
                             <Textarea 
-                              placeholder="Tell us about your current architecture..." 
+                              placeholder="Расскажите о вашей текущей архитектуре..." 
                               className="min-h-[120px] bg-secondary/30 rounded-xl resize-none" 
                               {...field} 
                             />
@@ -450,7 +450,7 @@ function DemoSection() {
                       className="w-full h-14 rounded-xl text-base shadow-md hover:shadow-lg transition-all"
                       disabled={submitMutation.isPending}
                     >
-                      {submitMutation.isPending ? "Submitting..." : "Request Demo"}
+                      {submitMutation.isPending ? "Отправка..." : "Запросить демо"}
                     </Button>
                   </form>
                 </Form>
@@ -472,7 +472,7 @@ function Footer() {
           <span className="font-display font-semibold tracking-tight">Event Orchestrator</span>
         </div>
         <p className="text-muted-foreground text-sm">
-          © {new Date().getFullYear()} Event Orchestrator, Inc. All rights reserved.
+          © {new Date().getFullYear()} Event Orchestrator. Все права защищены.
         </p>
       </div>
     </footer>
