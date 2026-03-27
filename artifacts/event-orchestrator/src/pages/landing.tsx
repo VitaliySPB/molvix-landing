@@ -117,6 +117,9 @@ function HeroSection() {
           <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mb-12">
             EOS — операционная система мероприятий. Инструмент, который трансформирует разовое событие в долгосрочный актив: базу контактов, коммуникацию и вовлечённое сообщество.
           </p>
+          <p className="text-base text-muted-foreground/70 max-w-xl mb-12 -mt-6">
+            Пока конкуренты снова покупают ту же аудиторию — вы уже работаете с ней.
+          </p>
 
           <div className="flex flex-col sm:flex-row items-start gap-4">
             <Button asChild size="lg" className="rounded-full px-8 h-14 text-base shadow-lg hover:shadow-xl transition-all">
@@ -156,8 +159,11 @@ function ProblemSection() {
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               Вы потратили сотни тысяч рублей на привлечение аудитории. Провели с ней один день. И через неделю не знаете ни одного из них по имени.
             </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               Следующее событие начинается с той же точки — заново покупая ту же аудиторию. Это не проблема удержания. Это сломанная механика.
+            </p>
+            <p className="text-base text-foreground/60 leading-relaxed italic border-l-2 border-border pl-4">
+              Retention нельзя «включить» после события — если до и во время ничего не было сделано. EOS работает на всех трёх фазах именно поэтому.
             </p>
           </div>
 
@@ -220,8 +226,11 @@ function HowItWorksSection() {
           <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-6">
             Retention нельзя включить после. Он начинается до.
           </h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-muted-foreground mb-4">
             Каждая фаза — необходимое условие для следующей. Если участник не получил ценность в день события — он не вернётся после.
+          </p>
+          <p className="text-base text-muted-foreground/60">
+            Вот как EOS встраивается в каждый этап — не добавляя сложности, а заполняя то, чего раньше не было.
           </p>
         </div>
 
@@ -283,8 +292,11 @@ function FeaturesSection() {
             <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-6">
               Два продукта в одном.
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-muted-foreground mb-4">
               Мобильное приложение для участников и веб-панель для организаторов. CRM для живой аудитории с поведенческими данными — аналога на рынке СНГ нет.
+            </p>
+            <p className="text-base text-muted-foreground/60">
+              Участник не теряется. Организатор не гадает. Всё, что нужно — уже внутри.
             </p>
           </div>
         </div>
@@ -324,9 +336,12 @@ function MetricsSection() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="mb-16 max-w-2xl">
           <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Что получает организатор</p>
-          <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-4">
             Аудитория как актив, а не расход.
           </h2>
+          <p className="text-lg text-muted-foreground">
+            Это не прогнозы. Это то, что становится возможным, когда событие перестаёт заканчиваться в день проведения.
+          </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {metrics.map((m, i) => (
@@ -385,8 +400,11 @@ function DemoSection() {
             <h2 className="text-5xl md:text-6xl font-display font-medium tracking-tight mb-8">
               Станьте первым.
             </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed mb-10">
-              EOS находится на стадии поиска первых пилотных клиентов. Мы работаем в ручном режиме, глубоко погружаясь в каждый запуск. Запросите демо — покажем продукт и обсудим вашу задачу.
+            <p className="text-xl text-muted-foreground leading-relaxed mb-4">
+              EOS находится на стадии поиска первых пилотных клиентов. Мы работаем в ручном режиме, глубоко погружаясь в каждый запуск.
+            </p>
+            <p className="text-base text-muted-foreground/70 leading-relaxed mb-10">
+              Один разговор меняет понимание того, что вообще возможно с вашей аудиторией — до, во время и после события.
             </p>
 
             <div className="space-y-4">
