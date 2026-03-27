@@ -108,17 +108,18 @@ function HeroSection() {
             MVP готов · Ищем первых пилотных клиентов
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-8xl font-display font-medium tracking-tight text-foreground leading-[1.05] mb-8">
-            Событие длится один день.
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-display font-medium tracking-tight text-foreground leading-[1.08] mb-6">
+            Вы платите ~4000 ₽ за каждого участника.
             <br />
-            <span className="text-muted-foreground">Отношения с аудиторией — годами.</span>
+            <span className="text-muted-foreground">Через неделю не знаете ни одного по имени.</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mb-12">
-            EOS — операционная система мероприятий. Инструмент, который трансформирует разовое событие в долгосрочный актив: базу контактов, коммуникацию и вовлечённое сообщество.
+          <p className="text-2xl md:text-3xl font-display font-medium text-foreground/80 leading-snug max-w-3xl mb-6">
+            Событие длится один день. Отношения с аудиторией — годами.
           </p>
-          <p className="text-base text-muted-foreground/70 max-w-xl mb-12 -mt-6">
-            Пока конкуренты снова покупают ту же аудиторию — вы уже работаете с ней.
+
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mb-12">
+            EOS — платформа, которая превращает разовое событие в постоянную базу контактов. Вы знаете кто вернётся — ещё до следующего события.
           </p>
 
           <div className="flex flex-col sm:flex-row items-start gap-4">
