@@ -503,7 +503,7 @@ function DemoSection() {
           <div className="max-w-xl lg:sticky lg:top-32">
             <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Пилотный запуск</p>
             <h2 className="text-5xl md:text-6xl font-display font-medium tracking-tight mb-8">
-              Станьте первым.
+              Станьте одним из первых.
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed mb-4">
               EOS — единственная платформа, которая удерживает аудиторию до, во время и после мероприятия. Без нового бюджета на рекламу.
