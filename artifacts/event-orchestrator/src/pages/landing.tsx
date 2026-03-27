@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { 
@@ -35,6 +35,44 @@ const demoFormSchema = z.object({
 });
 
 type DemoFormValues = z.infer<typeof demoFormSchema>;
+
+function AnimatedNumber({ value, suffix = "", prefix = "" }: { value: number; suffix?: string; prefix?: string }) {
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started) {
+          setStarted(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!started || value === 0) return;
+    const duration = 1400;
+    const startTime = Date.now();
+    const tick = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * value));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, [started, value]);
+
+  return <span ref={ref}>{prefix}{started ? count : 0}{suffix}</span>;
+}
 
 export default function LandingPage() {
   return (
@@ -384,7 +422,9 @@ function FeaturesSection() {
               transition={{ duration: 0.4, delay: i * 0.05 }}
             >
               <Card className="p-8 h-full bg-background/50 hover:bg-background border-border/50 hover-elevate transition-colors duration-300">
-                <feat.icon className="w-6 h-6 mb-6 text-foreground" />
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/20 mb-6">
+                  <feat.icon className="w-6 h-6 text-primary-foreground" style={{ color: "var(--btn-hover, #B8D97A)" }} />
+                </div>
                 <h3 className="text-xl font-display font-medium mb-3">{feat.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">{feat.desc}</p>
               </Card>
@@ -398,10 +438,10 @@ function FeaturesSection() {
 
 function MetricsSection() {
   const metrics = [
-    { value: "30 дней", label: "после события — отслеживаем возврат", desc: "Знаем, кто вернётся через день, неделю, месяц — ещё до следующего анонса" },
-    { value: "0 ₽", label: "стоит повторное приглашение", desc: "Вся аудитория прошлого события одним кликом — без рекламного бюджета" },
-    { value: "20 мин", label: "настройка события", desc: "Название, программа, сессии, спикеры, приглашения — без разработчика" },
-    { value: "× N", label: "событий в базе", desc: "Аудитории всех событий накапливаются и сегментируются в едином профиле" },
+    { numericValue: 30, suffix: " дней", label: "после события — отслеживаем возврат", desc: "Знаем, кто вернётся через день, неделю, месяц — ещё до следующего анонса" },
+    { numericValue: 0, prefix: "0 ", suffix: "₽", label: "стоит повторное приглашение", desc: "Вся аудитория прошлого события одним кликом — без рекламного бюджета", static: true },
+    { numericValue: 20, suffix: " мин", label: "настройка события", desc: "Название, программа, сессии, спикеры, приглашения — без разработчика" },
+    { numericValue: null, staticValue: "× N", label: "событий в базе", desc: "Аудитории всех событий накапливаются и сегментируются в едином профиле" },
   ];
 
   return (
@@ -426,7 +466,15 @@ function MetricsSection() {
               transition={{ duration: 0.4, delay: i * 0.1 }}
               className="border-t-2 border-foreground/10 pt-6"
             >
-              <p className="text-4xl font-display font-semibold text-foreground mb-1">{m.value}</p>
+              <p className="text-4xl font-display font-semibold text-foreground mb-1">
+                {m.staticValue ? (
+                  m.staticValue
+                ) : m.static ? (
+                  `0 ₽`
+                ) : (
+                  <AnimatedNumber value={m.numericValue!} suffix={m.suffix ?? ""} />
+                )}
+              </p>
               <p className="text-sm font-medium text-foreground/70 mb-3 uppercase tracking-wide">{m.label}</p>
               <p className="text-sm text-muted-foreground leading-snug">{m.desc}</p>
             </motion.div>
