@@ -92,7 +92,7 @@ function Navbar() {
 
 function HeroSection() {
   return (
-    <section className="relative pt-28 pb-32 flex items-center min-h-[90vh]">
+    <section className="relative pt-28 pb-20 flex items-center">
       <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -148,7 +148,7 @@ function ProblemSection() {
   ];
 
   return (
-    <section className="py-24 border-t border-border/40">
+    <section className="py-16">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
@@ -219,9 +219,9 @@ function HowItWorksSection() {
   ];
 
   return (
-    <section id="how-it-works" className="py-32">
+    <section id="how-it-works" className="py-16">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="mb-20 max-w-3xl">
+        <div className="mb-12 max-w-3xl">
           <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Три фазы жизненного цикла</p>
           <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-6">
             Retention нельзя включить после. Он начинается до.
@@ -284,9 +284,9 @@ function FeaturesSection() {
   ];
 
   return (
-    <section id="features" className="py-32 bg-secondary/30 border-y border-border/40">
+    <section id="features" className="py-16 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
           <div className="max-w-2xl">
             <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Инструменты</p>
             <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-6">
@@ -332,9 +332,9 @@ function MetricsSection() {
   ];
 
   return (
-    <section id="metrics" className="py-24 border-t border-border/40">
+    <section id="metrics" className="py-16">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="mb-16 max-w-2xl">
+        <div className="mb-10 max-w-2xl">
           <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Что получает организатор</p>
           <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-4">
             Аудитория как актив, а не расход.
@@ -392,7 +392,7 @@ function DemoSection() {
   };
 
   return (
-    <section id="demo" className="py-32 relative">
+    <section id="demo" className="py-16 relative">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           <div className="max-w-xl lg:sticky lg:top-32">
