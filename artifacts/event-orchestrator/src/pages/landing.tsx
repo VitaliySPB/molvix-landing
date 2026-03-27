@@ -131,7 +131,7 @@ function HeroSection() {
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-display font-medium tracking-tight text-foreground leading-[1.08] mb-6">
             Вы платите ~4000 ₽ за каждого участника.
             <br />
-            <span className="text-muted-foreground">Через неделю не знаете ни одного по имени.</span>
+            <span className="text-muted-foreground">Через неделю не знаете <span className="whitespace-nowrap">ни одного по имени.</span></span>
           </h1>
 
           <p className="text-2xl md:text-3xl font-display font-medium text-foreground/80 leading-snug max-w-3xl mb-6">
