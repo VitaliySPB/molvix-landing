@@ -106,7 +106,7 @@ function HeroSection() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-foreground opacity-20"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-foreground"></span>
             </span>
-            MVP готов · Ищем первых пилотных клиентов
+            Превратите разовое событие в постоянный источник клиентов
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-display font-medium tracking-tight text-foreground leading-[1.08] mb-6">
@@ -435,7 +435,7 @@ function DemoSection() {
               Станьте первым.
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed mb-4">
-              EOS находится на стадии поиска первых пилотных клиентов. Мы работаем в ручном режиме, глубоко погружаясь в каждый запуск.
+              EOS — единственная платформа, которая удерживает аудиторию до, во время и после мероприятия. Без нового бюджета на рекламу.
             </p>
             <p className="text-base text-muted-foreground/70 leading-relaxed mb-10">
               Один разговор меняет понимание того, что вообще возможно с вашей аудиторией — до, во время и после события.
