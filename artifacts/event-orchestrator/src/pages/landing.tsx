@@ -92,6 +92,25 @@ function Navbar() {
 }
 
 function HeroSection() {
+  const [email, setEmail] = useState("");
+  const [eventType, setEventType] = useState("");
+  const [participants, setParticipants] = useState("");
+  const [leadSubmitted, setLeadSubmitted] = useState(false);
+
+  const handleLeadSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    try {
+      await fetch("/api/event-leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, eventType: eventType || undefined, participants: participants || undefined }),
+      });
+    } catch {
+    }
+    setLeadSubmitted(true);
+  };
+
   return (
     <section className="relative pt-28 pb-20 flex items-center hero-bg">
       <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
@@ -119,21 +138,68 @@ function HeroSection() {
             Событие длится один день. Отношения с аудиторией — годами.
           </p>
 
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mb-12">
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mb-10">
             EOS — платформа, которая превращает разовое событие в постоянную базу контактов. Вы знаете кто вернётся — ещё до следующего события.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-start gap-4">
-            <Button asChild size="lg" className="rounded-full px-8 h-14 text-base shadow-lg hover:shadow-xl transition-all btn-primary-hover">
-              <a href="#demo">
-                Запросить демо <ArrowRight className="ml-2 w-4 h-4" />
-              </a>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="rounded-full px-8 h-14 text-base bg-transparent border-border/60 hover:bg-secondary/50">
-              <a href="#how-it-works">
-                Как это работает
-              </a>
-            </Button>
+          {leadSubmitted ? (
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-secondary border border-border/60 text-foreground font-medium mb-6"
+            >
+              <CheckCircle2 className="w-5 h-5 shrink-0" />
+              Заявка принята — свяжемся в ближайшее время
+            </motion.div>
+          ) : (
+            <form onSubmit={handleLeadSubmit} className="flex flex-col sm:flex-row gap-3 max-w-3xl mb-4">
+              <Input
+                type="email"
+                required
+                placeholder="Ваш email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="h-12 rounded-xl bg-background border-border/60 flex-1 min-w-0"
+              />
+              <select
+                value={eventType}
+                onChange={(e) => setEventType(e.target.value)}
+                className="h-12 rounded-xl border border-border/60 bg-background px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring sm:w-44 shrink-0"
+              >
+                <option value="">Тип события</option>
+                <option value="Конференция">Конференция</option>
+                <option value="Форум">Форум</option>
+                <option value="Воркшоп">Воркшоп</option>
+                <option value="Корпоратив">Корпоратив</option>
+                <option value="Концерт / фестиваль">Концерт / фестиваль</option>
+                <option value="Другое">Другое</option>
+              </select>
+              <select
+                value={participants}
+                onChange={(e) => setParticipants(e.target.value)}
+                className="h-12 rounded-xl border border-border/60 bg-background px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring sm:w-40 shrink-0"
+              >
+                <option value="">Кол-во участников</option>
+                <option value="до 50">до 50</option>
+                <option value="50–200">50–200</option>
+                <option value="200–500">200–500</option>
+                <option value="500–2000">500–2000</option>
+                <option value="2000+">2000+</option>
+              </select>
+              <Button type="submit" size="lg" className="h-12 rounded-xl px-6 text-sm font-medium shadow-md btn-primary-hover shrink-0">
+                Записаться <ArrowRight className="ml-1.5 w-4 h-4" />
+              </Button>
+            </form>
+          )}
+
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <p className="text-sm text-muted-foreground flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 shrink-0" />
+              Уже 12 организаторов в листе ожидания
+            </p>
+            <a href="#how-it-works" className="text-sm text-muted-foreground/70 hover:text-foreground transition-colors flex items-center gap-1">
+              Как это работает <ArrowRight className="w-3.5 h-3.5" />
+            </a>
           </div>
         </motion.div>
       </div>
