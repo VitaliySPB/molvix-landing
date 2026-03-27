@@ -453,7 +453,7 @@ function MetricsSection() {
             Аудитория как актив,<br />а не расход.
           </h2>
           <p className="text-lg text-muted-foreground">
-            Это не прогнозы. Это то, что становится возможным, когда событие перестаёт заканчиваться в день проведения.
+            Событие закончилось. Аудитория — нет.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
