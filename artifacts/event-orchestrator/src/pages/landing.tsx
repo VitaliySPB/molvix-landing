@@ -338,7 +338,7 @@ function MetricsSection() {
         <div className="mb-10 max-w-2xl">
           <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Что получает организатор</p>
           <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-4">
-            Аудитория как актив, а не расход.
+            Аудитория как актив,<br />а не расход.
           </h2>
           <p className="text-lg text-muted-foreground">
             Это не прогнозы. Это то, что становится возможным, когда событие перестаёт заканчиваться в день проведения.
