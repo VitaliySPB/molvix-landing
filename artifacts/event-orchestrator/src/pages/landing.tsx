@@ -112,7 +112,7 @@ function HeroSection() {
   };
 
   return (
-    <section className="relative pt-28 pb-20 flex items-center hero-bg">
+    <section className="relative pt-20 pb-14 flex items-center hero-bg">
       <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -120,7 +120,7 @@ function HeroSection() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-5xl"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/80 border border-border/50 text-sm font-medium text-muted-foreground mb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/80 border border-border/50 text-sm font-medium text-muted-foreground mb-5">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-foreground opacity-20"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-foreground"></span>
@@ -128,17 +128,17 @@ function HeroSection() {
             Превратите разовое событие в постоянный источник клиентов
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-display font-medium tracking-tight text-foreground leading-[1.08] mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-medium tracking-tight text-foreground leading-[1.08] mb-4">
             Вы платите ~4000 ₽ за каждого участника.
             <br />
             <span className="text-muted-foreground">Через неделю не знаете <span className="whitespace-nowrap">ни одного по имени.</span></span>
           </h1>
 
-          <p className="text-2xl md:text-3xl font-display font-medium text-foreground/80 leading-snug max-w-3xl mb-6">
+          <p className="text-xl md:text-2xl font-display font-medium text-foreground/80 leading-snug max-w-3xl mb-4">
             Событие длится один день. Отношения с аудиторией — годами.
           </p>
 
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mb-10">
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mb-7">
             EOS — платформа, которая превращает разовое событие в постоянную базу контактов. Вы знаете кто вернётся — ещё до следующего события.
           </p>
 
