@@ -92,7 +92,7 @@ function Navbar() {
 
 function HeroSection() {
   return (
-    <section className="relative pt-48 pb-32 flex items-center min-h-[90vh]">
+    <section className="relative pt-28 pb-32 flex items-center min-h-[90vh]">
       <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
