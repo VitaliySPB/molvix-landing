@@ -128,7 +128,7 @@ function HeroSection() {
             Превратите разовое событие в постоянный источник клиентов
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-medium tracking-tight text-foreground leading-[1.08] mb-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-medium tracking-tight text-foreground leading-[1.2] mb-4">
             Вы платите ~4000 ₽ за каждого участника.
             <br />
             <span className="text-muted-foreground">Через неделю не знаете <span className="whitespace-nowrap">ни одного по имени.</span></span>
@@ -142,29 +142,32 @@ function HeroSection() {
             EOS — платформа, которая превращает разовое событие в постоянную базу контактов. Вы знаете кто вернётся — ещё до следующего события.
           </p>
 
+          <div className="max-w-3xl">
           {leadSubmitted ? (
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-secondary border border-border/60 text-foreground font-medium mb-6"
+              className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-secondary border border-border/60 text-foreground font-medium"
             >
               <CheckCircle2 className="w-5 h-5 shrink-0" />
               Заявка принята — свяжемся в ближайшее время
             </motion.div>
           ) : (
-            <form onSubmit={handleLeadSubmit} className="flex flex-col sm:flex-row gap-3 max-w-3xl mb-4">
+            <div className="bg-background/80 backdrop-blur-sm border border-border/60 rounded-2xl p-4 shadow-[0_4px_24px_rgba(0,0,0,0.08)]">
+              <p className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wider">Получить доступ</p>
+              <form onSubmit={handleLeadSubmit} className="flex flex-col sm:flex-row gap-3">
               <Input
                 type="email"
                 required
-                placeholder="Ваш email"
+                placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="h-12 rounded-xl bg-background border-border/60 flex-1 min-w-0"
+                className="h-12 rounded-xl bg-secondary/40 border-border focus-visible:border-[#CCF96C] focus-visible:ring-0 flex-1 min-w-0 text-foreground placeholder:text-muted-foreground/70"
               />
               <select
                 value={eventType}
                 onChange={(e) => setEventType(e.target.value)}
-                className="h-12 rounded-xl border border-border/60 bg-background px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring sm:w-44 shrink-0"
+                className="h-12 rounded-xl border border-border bg-secondary/40 px-3 text-sm text-foreground focus:outline-none focus:border-[#CCF96C] sm:w-44 shrink-0"
               >
                 <option value="">Тип события</option>
                 <option value="Конференция">Конференция</option>
@@ -177,9 +180,9 @@ function HeroSection() {
               <select
                 value={participants}
                 onChange={(e) => setParticipants(e.target.value)}
-                className="h-12 rounded-xl border border-border/60 bg-background px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring sm:w-40 shrink-0"
+                className="h-12 rounded-xl border border-border bg-secondary/40 px-3 text-sm text-foreground focus:outline-none focus:border-[#CCF96C] sm:w-40 shrink-0"
               >
-                <option value="">Кол-во участников</option>
+                <option value="">Участников</option>
                 <option value="до 50">до 50</option>
                 <option value="50–200">50–200</option>
                 <option value="200–500">200–500</option>
@@ -190,9 +193,10 @@ function HeroSection() {
                 Записаться <ArrowRight className="ml-1.5 w-4 h-4" />
               </Button>
             </form>
+            </div>
           )}
 
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+          <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-4">
             <p className="text-sm text-muted-foreground flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 shrink-0" />
               Уже 12 организаторов в листе ожидания
@@ -200,6 +204,7 @@ function HeroSection() {
             <a href="#how-it-works" className="text-sm text-muted-foreground/70 hover:text-foreground transition-colors flex items-center gap-1">
               Как это работает <ArrowRight className="w-3.5 h-3.5" />
             </a>
+          </div>
           </div>
         </motion.div>
       </div>

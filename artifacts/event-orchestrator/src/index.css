@@ -180,3 +180,14 @@ html {
     background-image: none;
   }
 }
+
+@media (max-height: 700px) {
+  .hero-bg {
+    padding-top: 1.25rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+  .hero-bg h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+  }
+}
