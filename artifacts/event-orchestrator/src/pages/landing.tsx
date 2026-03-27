@@ -219,7 +219,7 @@ function HowItWorksSection() {
   ];
 
   return (
-    <section id="how-it-works" className="py-16">
+    <section id="how-it-works" className="py-16 section-dots">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="mb-12 max-w-3xl">
           <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Три фазы жизненного цикла</p>
@@ -332,7 +332,7 @@ function MetricsSection() {
   ];
 
   return (
-    <section id="metrics" className="py-16">
+    <section id="metrics" className="py-16 section-dots">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="mb-10 max-w-2xl">
           <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Что получает организатор</p>
