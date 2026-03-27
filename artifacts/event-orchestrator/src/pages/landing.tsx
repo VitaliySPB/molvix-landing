@@ -422,11 +422,6 @@ function DemoSection() {
               ))}
             </div>
 
-            <div className="mt-10 pt-8 border-t border-border/40">
-              <p className="text-sm text-muted-foreground">
-                Рынок: Россия · Казахстан · СНГ
-              </p>
-            </div>
           </div>
 
           <div className="relative">
