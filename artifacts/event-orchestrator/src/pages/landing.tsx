@@ -421,12 +421,12 @@ function FeaturesSection() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
             >
-              <Card className="p-8 h-full bg-background/50 hover:bg-background border-border/50 hover-elevate transition-colors duration-300">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/20 mb-6">
-                  <feat.icon className="w-6 h-6 text-primary-foreground" style={{ color: "var(--btn-hover, #B8D97A)" }} />
+              <Card className="p-5 h-full bg-background/50 hover:bg-background border-border/50 hover-elevate transition-colors duration-300">
+                <div className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-foreground/8 mb-4">
+                  <feat.icon className="w-4 h-4 text-foreground/70" />
                 </div>
-                <h3 className="text-xl font-display font-medium mb-3">{feat.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{feat.desc}</p>
+                <h3 className="text-base font-display font-semibold mb-2">{feat.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{feat.desc}</p>
               </Card>
             </motion.div>
           ))}
