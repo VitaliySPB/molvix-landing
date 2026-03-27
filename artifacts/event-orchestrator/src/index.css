@@ -175,4 +175,8 @@ html {
     background-image: radial-gradient(circle, rgba(31, 41, 55, 0.045) 1px, transparent 1px);
     background-size: 22px 22px;
   }
+
+  .dark .section-dots {
+    background-image: none;
+  }
 }
