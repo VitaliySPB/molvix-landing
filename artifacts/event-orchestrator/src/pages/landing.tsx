@@ -92,7 +92,7 @@ function Navbar() {
 
 function HeroSection() {
   return (
-    <section className="relative pt-28 pb-20 flex items-center">
+    <section className="relative pt-28 pb-20 flex items-center hero-bg">
       <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -122,7 +122,7 @@ function HeroSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-start gap-4">
-            <Button asChild size="lg" className="rounded-full px-8 h-14 text-base shadow-lg hover:shadow-xl transition-all">
+            <Button asChild size="lg" className="rounded-full px-8 h-14 text-base shadow-lg hover:shadow-xl transition-all btn-primary-hover">
               <a href="#demo">
                 Запросить демо <ArrowRight className="ml-2 w-4 h-4" />
               </a>
@@ -537,7 +537,7 @@ function DemoSection() {
 
                     <Button
                       type="submit"
-                      className="w-full h-14 rounded-xl text-base shadow-md hover:shadow-lg transition-all"
+                      className="w-full h-14 rounded-xl text-base shadow-md hover:shadow-lg transition-all btn-primary-hover"
                       disabled={submitMutation.isPending}
                     >
                       {submitMutation.isPending ? "Отправка..." : "Запросить демо"}
