@@ -89,12 +89,17 @@ components:
         email:
           type: string
           format: email
+        phone:
+          type: string
+          minLength: 6
+          maxLength: 30
         company:
           type: string
           minLength: 1
           maxLength: 200
         role:
           type: string
+          minLength: 1
           maxLength: 100
         message:
           type: string
@@ -102,7 +107,9 @@ components:
       required:
         - name
         - email
+        - phone
         - company
+        - role
     DemoRequestResponse:
       type: object
       properties:
@@ -112,11 +119,12 @@ components:
           type: string
         email:
           type: string
+        phone:
+          type: string
         company:
           type: string
         role:
           type: string
-          nullable: true
         message:
           type: string
           nullable: true
@@ -127,7 +135,9 @@ components:
         - id
         - name
         - email
+        - phone
         - company
+        - role
         - createdAt
     ErrorResponse:
       type: object

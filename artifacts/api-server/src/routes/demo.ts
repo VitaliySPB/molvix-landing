@@ -26,8 +26,9 @@ router.post("/demo-requests", async (req, res): Promise<void> => {
     id: request.id,
     name: request.name,
     email: request.email,
+    phone: request.phone,
     company: request.company,
-    role: request.role ?? null,
+    role: request.role,
     message: request.message ?? null,
     createdAt: request.createdAt.toISOString(),
   });
@@ -42,7 +43,6 @@ router.get("/demo-requests", async (req, res): Promise<void> => {
   const response = ListDemoRequestsResponse.parse({
     requests: requests.map((r) => ({
       ...r,
-      role: r.role ?? null,
       message: r.message ?? null,
       createdAt: r.createdAt.toISOString(),
     })),

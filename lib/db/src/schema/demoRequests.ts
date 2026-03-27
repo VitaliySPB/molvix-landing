@@ -6,8 +6,9 @@ export const demoRequestsTable = pgTable("demo_requests", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull(),
+  phone: text("phone").notNull(),
   company: text("company").notNull(),
-  role: text("role"),
+  role: text("role").notNull(),
   message: text("message"),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 });

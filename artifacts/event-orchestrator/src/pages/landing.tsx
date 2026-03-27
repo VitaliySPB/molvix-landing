@@ -28,8 +28,9 @@ import { useToast } from "@/hooks/use-toast";
 const demoFormSchema = z.object({
   name: z.string().min(2, "Имя должно содержать не менее 2 символов").max(100),
   email: z.string().email("Введите корректный email-адрес"),
-  company: z.string().min(1, "Укажите название компании").max(200),
-  role: z.string().max(100).optional(),
+  phone: z.string().min(6, "Укажите номер телефона").max(30, "Слишком длинный номер"),
+  company: z.string().min(1, "Укажите название или ИНН компании").max(200),
+  role: z.string().min(1, "Укажите вашу должность").max(100),
   message: z.string().max(1000).optional(),
 });
 
@@ -365,22 +366,54 @@ function MetricsSection() {
   );
 }
 
+type InnLookupState = "idle" | "loading" | "found" | "not-found";
+
 function DemoSection() {
   const { toast } = useToast();
   const [isSuccess, setIsSuccess] = useState(false);
+  const [innLookupState, setInnLookupState] = useState<InnLookupState>("idle");
+  const innLookupTimer = useState<ReturnType<typeof setTimeout> | null>(null);
 
   const form = useForm<DemoFormValues>({
     resolver: zodResolver(demoFormSchema),
-    defaultValues: { name: "", email: "", company: "", role: "", message: "" },
+    defaultValues: { name: "", email: "", phone: "", company: "", role: "", message: "" },
   });
 
   const submitMutation = useSubmitDemoRequest();
+
+  const handleCompanyChange = (value: string, onChange: (v: string) => void) => {
+    onChange(value);
+    if (innLookupTimer[0]) clearTimeout(innLookupTimer[0]);
+
+    const isInn = /^\d{10}$/.test(value.trim()) || /^\d{12}$/.test(value.trim());
+    if (!isInn) {
+      setInnLookupState("idle");
+      return;
+    }
+
+    setInnLookupState("loading");
+    innLookupTimer[0] = setTimeout(async () => {
+      try {
+        const resp = await fetch(`/api/company-lookup?inn=${value.trim()}`);
+        if (!resp.ok) { setInnLookupState("not-found"); return; }
+        const data = await resp.json() as { name?: string };
+        if (data.name) {
+          onChange(data.name);
+          setInnLookupState("found");
+        } else {
+          setInnLookupState("not-found");
+        }
+      } catch {
+        setInnLookupState("not-found");
+      }
+    }, 500);
+  };
 
   const onSubmit = (data: DemoFormValues) => {
     submitMutation.mutate(
       { data },
       {
-        onSuccess: () => { setIsSuccess(true); form.reset(); },
+        onSuccess: () => { setIsSuccess(true); form.reset(); setInnLookupState("idle"); },
         onError: () => {
           toast({
             title: "Что-то пошло не так",
@@ -484,15 +517,45 @@ function DemoSection() {
                       />
                     </div>
 
+                    <FormField
+                      control={form.control}
+                      name="phone"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-foreground/80 font-medium">Телефон</FormLabel>
+                          <FormControl>
+                            <Input placeholder="+7 (999) 000-00-00" className="h-12 bg-secondary/30 rounded-xl" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <FormField
                         control={form.control}
                         name="company"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-foreground/80 font-medium">Компания</FormLabel>
+                            <FormLabel className="text-foreground/80 font-medium">
+                              Компания
+                              {innLookupState === "loading" && (
+                                <span className="ml-2 text-xs text-muted-foreground font-normal animate-pulse">Ищем по ИНН…</span>
+                              )}
+                              {innLookupState === "found" && (
+                                <span className="ml-2 text-xs text-green-600 font-normal">✓ Найдено</span>
+                              )}
+                              {innLookupState === "not-found" && (
+                                <span className="ml-2 text-xs text-muted-foreground font-normal">ИНН не найден</span>
+                              )}
+                            </FormLabel>
                             <FormControl>
-                              <Input placeholder="Название организации" className="h-12 bg-secondary/30 rounded-xl" {...field} />
+                              <Input
+                                placeholder="Название/ИНН"
+                                className="h-12 bg-secondary/30 rounded-xl"
+                                {...field}
+                                onChange={(e) => handleCompanyChange(e.target.value, field.onChange)}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -503,7 +566,7 @@ function DemoSection() {
                         name="role"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-foreground/80 font-medium">Должность <span className="text-muted-foreground font-normal">(необязательно)</span></FormLabel>
+                            <FormLabel className="text-foreground/80 font-medium">Должность</FormLabel>
                             <FormControl>
                               <Input placeholder="Организатор, директор..." className="h-12 bg-secondary/30 rounded-xl" {...field} />
                             </FormControl>

@@ -10,8 +10,9 @@ export interface DemoRequestResponse {
   id: number;
   name: string;
   email: string;
+  phone: string;
   company: string;
-  role?: string | null;
+  role: string;
   message?: string | null;
   createdAt: Date;
 }

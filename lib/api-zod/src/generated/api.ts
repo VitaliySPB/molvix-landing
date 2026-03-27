@@ -22,6 +22,9 @@ export const HealthCheckResponse = zod.object({
 export const submitDemoRequestBodyNameMin = 2;
 export const submitDemoRequestBodyNameMax = 100;
 
+export const submitDemoRequestBodyPhoneMin = 6;
+export const submitDemoRequestBodyPhoneMax = 30;
+
 export const submitDemoRequestBodyCompanyMax = 200;
 
 export const submitDemoRequestBodyRoleMax = 100;
@@ -34,8 +37,12 @@ export const SubmitDemoRequestBody = zod.object({
     .min(submitDemoRequestBodyNameMin)
     .max(submitDemoRequestBodyNameMax),
   email: zod.string().email(),
+  phone: zod
+    .string()
+    .min(submitDemoRequestBodyPhoneMin)
+    .max(submitDemoRequestBodyPhoneMax),
   company: zod.string().min(1).max(submitDemoRequestBodyCompanyMax),
-  role: zod.string().max(submitDemoRequestBodyRoleMax).optional(),
+  role: zod.string().min(1).max(submitDemoRequestBodyRoleMax),
   message: zod.string().max(submitDemoRequestBodyMessageMax).optional(),
 });
 
@@ -49,8 +56,9 @@ export const ListDemoRequestsResponse = zod.object({
       id: zod.number(),
       name: zod.string(),
       email: zod.string(),
+      phone: zod.string(),
       company: zod.string(),
-      role: zod.string().nullish(),
+      role: zod.string(),
       message: zod.string().nullish(),
       createdAt: zod.date(),
     }),

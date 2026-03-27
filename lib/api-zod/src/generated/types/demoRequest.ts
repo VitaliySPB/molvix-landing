@@ -14,12 +14,20 @@ export interface DemoRequest {
   name: string;
   email: string;
   /**
+   * @minLength 6
+   * @maxLength 30
+   */
+  phone: string;
+  /**
    * @minLength 1
    * @maxLength 200
    */
   company: string;
-  /** @maxLength 100 */
-  role?: string;
+  /**
+   * @minLength 1
+   * @maxLength 100
+   */
+  role: string;
   /** @maxLength 1000 */
   message?: string;
 }

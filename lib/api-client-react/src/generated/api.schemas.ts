@@ -17,12 +17,20 @@ export interface DemoRequest {
   name: string;
   email: string;
   /**
+   * @minLength 6
+   * @maxLength 30
+   */
+  phone: string;
+  /**
    * @minLength 1
    * @maxLength 200
    */
   company: string;
-  /** @maxLength 100 */
-  role?: string;
+  /**
+   * @minLength 1
+   * @maxLength 100
+   */
+  role: string;
   /** @maxLength 1000 */
   message?: string;
 }
@@ -31,8 +39,9 @@ export interface DemoRequestResponse {
   id: number;
   name: string;
   email: string;
+  phone: string;
   company: string;
-  role?: string | null;
+  role: string;
   message?: string | null;
   createdAt: string;
 }
