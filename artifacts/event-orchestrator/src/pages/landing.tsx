@@ -653,27 +653,41 @@ function PricingSection() {
   return (
     <section className="py-16 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="max-w-2xl"
-        >
-          <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Стоимость</p>
-          <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-6">
-            Сколько стоит EOS?
-          </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-            Стоимость зависит от масштаба события, количества участников и частоты запусков. Готового прайса нет — каждый организатор получает расчёт под свой формат.
-          </p>
-          <p className="text-base text-muted-foreground/70 leading-relaxed mb-8">
-            Одно событие на 200 человек обходится дешевле, чем один повторный запуск рекламы на ту же аудиторию.
-          </p>
-          <Button asChild size="lg" className="rounded-xl px-8 shadow-md btn-primary-hover">
-            <a href="#demo">Получить расчёт <ArrowRight className="ml-2 w-4 h-4" /></a>
-          </Button>
-        </motion.div>
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Стоимость</p>
+            <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-6">
+              Сколько стоит EOS?
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+              Стоимость зависит от масштаба события, количества участников и частоты запусков. Готового прайса нет — каждый организатор получает расчёт под свой формат.
+            </p>
+            <p className="text-base text-muted-foreground/70 leading-relaxed mb-8">
+              Одно событие на 200 человек обходится дешевле, чем один повторный запуск рекламы на ту же аудиторию.
+            </p>
+            <Button asChild size="lg" className="rounded-xl px-8 shadow-md btn-primary-hover">
+              <a href="#demo">Получить расчёт <ArrowRight className="ml-2 w-4 h-4" /></a>
+            </Button>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="flex items-center justify-center"
+          >
+            <img
+              src="/illustrations/pricing.png"
+              alt="Расчёт стоимости EOS"
+              className="w-full max-w-sm rounded-2xl"
+            />
+          </motion.div>
+        </div>
       </div>
     </section>
   );
