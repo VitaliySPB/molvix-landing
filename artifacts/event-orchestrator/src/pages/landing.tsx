@@ -127,6 +127,7 @@ function Navbar() {
           <a href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Как работает</a>
           <a href="#features" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Возможности</a>
           <a href="#metrics" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Результаты</a>
+          <a href="#pricing" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Стоимость</a>
           <Button asChild size="sm" className="rounded-full px-6 shadow-sm">
             <a href="#demo">Запросить демо</a>
           </Button>
@@ -152,6 +153,7 @@ function Navbar() {
           <a href="#how-it-works" onClick={closeMenu} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1">Как работает</a>
           <a href="#features" onClick={closeMenu} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1">Возможности</a>
           <a href="#metrics" onClick={closeMenu} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1">Результаты</a>
+          <a href="#pricing" onClick={closeMenu} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1">Стоимость</a>
           <Button asChild size="sm" className="rounded-full w-full mt-1">
             <a href="#demo" onClick={closeMenu}>Запросить демо</a>
           </Button>
@@ -651,7 +653,7 @@ function MetricsSection() {
 
 function PricingSection() {
   return (
-    <section className="py-16 bg-secondary/30">
+    <section id="pricing" className="py-16 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
