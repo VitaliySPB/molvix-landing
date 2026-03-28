@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { 
   Users, ShieldCheck, ArrowRight, CheckCircle2, 
   Workflow, CalendarDays, TrendingUp,
-  Menu, X
+  Menu, X, Briefcase, BookOpen, Music
 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -191,7 +191,7 @@ function HeroSection() {
   };
 
   return (
-    <section className="relative pt-20 pb-14 flex items-center hero-bg">
+    <section className="relative pt-20 pb-8 flex items-center hero-bg">
       <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -294,21 +294,25 @@ function HeroSection() {
 function ForWhoSection() {
   const segments = [
     {
+      icon: Users,
       title: "Конференции и форумы",
       pain: "500 участников пришли. Через месяц — тишина.",
       gain: "Знаете кто из них вернётся на следующий форум ещё до анонса."
     },
     {
+      icon: Briefcase,
       title: "Корпоративные события",
       pain: "Тимбилдинги и B2B-ивенты без аналитики — деньги в воздух.",
       gain: "Данные об активности каждого участника и готовность к следующему шагу."
     },
     {
+      icon: BookOpen,
       title: "Образовательные мероприятия",
       pain: "Слушатели курсов и воркшопов исчезают сразу после события.",
       gain: "Автоматические сегменты: кто прошёл всё, кто выпал, кто готов к следующему модулю."
     },
     {
+      icon: Music,
       title: "Концерты и фестивали",
       pain: "Тысячи человек — и ни одного контакта в CRM.",
       gain: "QR-вход превращается в базу лояльных зрителей для следующего сезона."
@@ -333,10 +337,16 @@ function ForWhoSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
             >
-              <Card className="p-6 h-full bg-background border-border/50 hover-elevate">
+              <Card className="p-6 h-full bg-background border-border/50 hover-elevate flex flex-col">
+                <div className="w-9 h-9 rounded-lg bg-primary/15 flex items-center justify-center mb-4 shrink-0">
+                  <s.icon className="w-4.5 h-4.5 text-primary" strokeWidth={1.8} />
+                </div>
                 <h3 className="text-base font-display font-semibold mb-3">{s.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4 border-l-2 border-border pl-3">{s.pain}</p>
-                <p className="text-sm text-foreground/80 leading-relaxed">{s.gain}</p>
+                <div className="flex items-start gap-2 mt-auto">
+                  <ArrowRight className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <p className="text-sm text-foreground/80 leading-relaxed">{s.gain}</p>
+                </div>
               </Card>
             </motion.div>
           ))}
@@ -673,14 +683,25 @@ function PricingSection() {
             <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-6">
               Сколько стоит <span className="gradient-text">EOS</span>?
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-              Стоимость зависит от масштаба события, количества участников и частоты запусков. Готового прайса нет — каждый организатор получает расчёт под свой формат.
+            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+              Стоимость зависит от масштаба события, количества участников и частоты запусков. Каждый организатор получает расчёт под свой формат.
             </p>
-            <p className="text-base text-muted-foreground/70 leading-relaxed mb-8">
-              Одно событие на 200 человек обходится дешевле, чем один повторный запуск рекламы на ту же аудиторию.
-            </p>
+
+            <div className="grid grid-cols-3 gap-3 mb-8">
+              {[
+                { label: "до 200 уч.", price: "от 15 000 ₽" },
+                { label: "200–1000 уч.", price: "от 35 000 ₽" },
+                { label: "1000+ уч.", price: "Индивидуально" },
+              ].map((tier) => (
+                <div key={tier.label} className="rounded-xl border border-border/60 bg-background/60 px-3 py-3 text-center">
+                  <p className="text-[11px] text-muted-foreground mb-1 leading-tight">{tier.label}</p>
+                  <p className="text-sm font-semibold font-display leading-tight">{tier.price}</p>
+                </div>
+              ))}
+            </div>
+
             <Button asChild size="lg" className="rounded-xl px-8 shadow-md btn-primary-hover">
-              <a href="#demo">Получить расчёт <ArrowRight className="ml-2 w-4 h-4" /></a>
+              <a href="#demo">Получить точный расчёт <ArrowRight className="ml-2 w-4 h-4" /></a>
             </Button>
           </motion.div>
           <motion.div
@@ -949,19 +970,69 @@ function DemoSection() {
 }
 
 function Footer() {
+  const navLinks = [
+    { label: "Как работает", href: "#how-it-works" },
+    { label: "Возможности", href: "#features" },
+    { label: "Результаты", href: "#metrics" },
+    { label: "Стоимость", href: "#pricing" },
+    { label: "Запросить демо", href: "#demo" },
+  ];
+
   return (
-    <footer className="border-t border-border/40 py-12 bg-secondary/20">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="flex items-center gap-2">
-          <Workflow className="w-5 h-5" />
-          <div className="flex flex-col leading-none">
-            <span className="font-display font-semibold tracking-tight text-sm">EOS</span>
-            <span className="text-[10px] text-muted-foreground tracking-widest uppercase">Event Operating System</span>
+    <footer className="border-t border-border/40 bg-secondary/20">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div>
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-7 h-7 bg-primary text-primary-foreground rounded-lg flex items-center justify-center">
+              <Workflow className="w-4 h-4" />
+            </div>
+            <div className="flex flex-col leading-none">
+              <span className="font-display font-semibold tracking-tight text-sm">EOS</span>
+              <span className="text-[10px] text-muted-foreground tracking-widest uppercase">Event Operating System</span>
+            </div>
           </div>
+          <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+            Превращаем разовое событие в постоянную базу контактов.
+          </p>
         </div>
-        <p className="text-muted-foreground text-sm">
+
+        <div>
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Навигация</p>
+          <ul className="space-y-2">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a href={link.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Контакт</p>
+          <ul className="space-y-2">
+            <li>
+              <a href="mailto:hello@eos-app.ru" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                hello@eos-app.ru
+              </a>
+            </li>
+            <li>
+              <a href="https://t.me/eos_platform" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                Telegram: @eos_platform
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="border-t border-border/30 max-w-7xl mx-auto px-6 md:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p className="text-muted-foreground text-xs">
           © {new Date().getFullYear()} EOS. Все права защищены.
         </p>
+        <a href="#" className="text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors">
+          Политика конфиденциальности
+        </a>
       </div>
     </footer>
   );
