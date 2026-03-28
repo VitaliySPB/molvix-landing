@@ -560,7 +560,7 @@ function FeaturesSection() {
           <div className="max-w-2xl">
             <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Инструменты</p>
             <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-6">
-              Два продукта в одном.
+              <span className="gradient-text">Два</span> продукта в одном.
             </h2>
             <p className="text-xl text-muted-foreground mb-4">
               Мобильное приложение для участников и веб-панель для организаторов. CRM для живой аудитории с поведенческими данными — аналога на рынке СНГ нет.
