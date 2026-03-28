@@ -314,7 +314,7 @@ function ForWhoSection() {
         <div className="mb-10">
           <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Для кого</p>
           <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight">
-            EOS подходит, если вы проводите события.
+            EOS подходит, если вы проводите <span className="gradient-text">события</span>.
           </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -424,7 +424,7 @@ function ProblemSection() {
           <div>
             <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Реальная проблема</p>
             <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-6">
-              Организаторы начинают каждое событие с нуля.
+              Организаторы начинают каждое событие с <span className="gradient-text">нуля</span>.
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               Вы потратили сотни тысяч рублей на привлечение аудитории. Провели с ней один день. И через неделю не знаете ни одного из них по имени.
@@ -494,7 +494,7 @@ function HowItWorksSection() {
         <div className="mb-12 max-w-3xl">
           <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Три фазы жизненного цикла</p>
           <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-6">
-            Аудиторию нельзя удержать после. Это начинается до.
+            Аудиторию нельзя удержать после. Это начинается <span className="gradient-text">до</span>.
           </h2>
           <p className="text-xl text-muted-foreground mb-4">
             Каждая фаза — необходимое условие для следующей. Если участник не получил ценность в день события — он не вернётся после.
@@ -664,7 +664,7 @@ function PricingSection() {
           >
             <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Стоимость</p>
             <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-6">
-              Сколько стоит EOS?
+              Сколько стоит <span className="gradient-text">EOS</span>?
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-4">
               Стоимость зависит от масштаба события, количества участников и частоты запусков. Готового прайса нет — каждый организатор получает расчёт под свой формат.
@@ -761,7 +761,7 @@ function DemoSection() {
           <div className="max-w-xl lg:sticky lg:top-32">
             <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Пилотный запуск</p>
             <h2 className="text-5xl md:text-6xl font-display font-medium tracking-tight mb-8">
-              Станьте одним из первых.
+              Станьте одним из <span className="gradient-text">первых</span>.
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed mb-4">
               EOS — единственная платформа, которая удерживает аудиторию до, во время и после мероприятия. Без нового бюджета на рекламу.
