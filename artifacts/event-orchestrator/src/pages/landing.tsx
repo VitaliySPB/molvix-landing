@@ -81,11 +81,13 @@ export default function LandingPage() {
       <Navbar />
       <main className="flex-grow">
         <HeroSection />
+        <ForWhoSection />
         <ProblemSection />
         <HowItWorksSection />
         <FeaturesSection />
         <MetricsSection />
         <PricingSection />
+        <FaqSection />
         <DemoSection />
       </main>
       <Footer />
@@ -276,6 +278,131 @@ function HeroSection() {
           </div>
           </div>
         </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function ForWhoSection() {
+  const segments = [
+    {
+      title: "Конференции и форумы",
+      pain: "500 участников пришли. Через месяц — тишина.",
+      gain: "Знаете кто из них вернётся на следующий форум ещё до анонса."
+    },
+    {
+      title: "Корпоративные события",
+      pain: "Тимбилдинги и B2B-ивенты без аналитики — деньги в воздух.",
+      gain: "Данные об активности каждого участника и готовность к следующему шагу."
+    },
+    {
+      title: "Образовательные мероприятия",
+      pain: "Слушатели курсов и воркшопов исчезают сразу после события.",
+      gain: "Автоматические сегменты: кто прошёл всё, кто выпал, кто готов к следующему модулю."
+    },
+    {
+      title: "Концерты и фестивали",
+      pain: "Тысячи человек — и ни одного контакта в CRM.",
+      gain: "QR-вход превращается в базу лояльных зрителей для следующего сезона."
+    },
+  ];
+
+  return (
+    <section className="py-16 section-dots">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="mb-10">
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Для кого</p>
+          <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight">
+            EOS подходит, если вы проводите события.
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {segments.map((s, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.08 }}
+            >
+              <Card className="p-6 h-full bg-background border-border/50 hover-elevate">
+                <h3 className="text-base font-display font-semibold mb-3">{s.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4 border-l-2 border-border pl-3">{s.pain}</p>
+                <p className="text-sm text-foreground/80 leading-relaxed">{s.gain}</p>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FaqSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      q: "Нужно ли участникам скачивать приложение?",
+      a: "Да, но это занимает 30 секунд. QR-код для скачивания отправляется за 24 часа до события вместе с программой. По нашей практике, 70–80% участников устанавливают приложение до начала."
+    },
+    {
+      q: "Сколько времени занимает настройка события?",
+      a: "20 минут для стандартного события: название, описание, расписание сессий, спикеры, участники. Без разработчика и без интеграций."
+    },
+    {
+      q: "Как долго хранятся данные об аудитории?",
+      a: "Бессрочно в рамках вашего тарифа. Все события и аудитории накапливаются в едином профиле организатора — вы всегда видите полную историю взаимодействий."
+    },
+    {
+      q: "Есть ли интеграции с CRM или Bitrix24?",
+      a: "В текущей версии — экспорт контактов в CSV и базовый webhook. Прямая интеграция с Bitrix24 и AmoCRM в роадмапе на Q3 2025."
+    },
+    {
+      q: "Что если участник не хочет сканировать QR?",
+      a: "Бумажный бейдж остаётся опцией. Но на практике QR-нетворкинг — одна из самых популярных фич: люди обменивают контакты прямо на ивенте без визиток и Telegram."
+    },
+    {
+      q: "Работает ли EOS без интернета на площадке?",
+      a: "Программа события и материалы кэшируются в приложении — доступны офлайн. QR-регистрация и нетворкинг требуют соединения. Для крупных площадок рекомендуем отдельную точку Wi-Fi."
+    },
+  ];
+
+  return (
+    <section className="py-16">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="mb-10 max-w-2xl">
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Частые вопросы</p>
+          <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight">
+            Вопросы и ответы
+          </h2>
+        </div>
+        <div className="max-w-3xl divide-y divide-border/60">
+          {faqs.map((faq, i) => (
+            <div key={i} className="py-5">
+              <button
+                className="w-full flex items-center justify-between gap-4 text-left group"
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+              >
+                <span className="text-base font-medium text-foreground group-hover:text-foreground/80 transition-colors">{faq.q}</span>
+                <span className={`shrink-0 w-5 h-5 rounded-full border border-border/60 flex items-center justify-center transition-transform duration-200 ${openIndex === i ? "rotate-45" : ""}`}>
+                  <ArrowRight className="w-2.5 h-2.5 -rotate-45" />
+                </span>
+              </button>
+              {openIndex === i && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.22 }}
+                  className="overflow-hidden"
+                >
+                  <p className="pt-3 text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
+                </motion.div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -481,7 +608,7 @@ function MetricsSection() {
         <div className="mb-10 max-w-2xl">
           <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Что получает организатор</p>
           <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-4">
-            Аудитория как актив,<br />а не расход.
+            Аудитория как <span className="gradient-text">актив</span>,<br />а не расход.
           </h2>
           <p className="text-lg text-muted-foreground">
             Событие закончилось. Аудитория — нет.
