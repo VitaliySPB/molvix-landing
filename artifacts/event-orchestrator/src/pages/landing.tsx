@@ -16,6 +16,13 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   Form,
   FormControl,
   FormField,
@@ -236,31 +243,31 @@ function HeroSection() {
                 onChange={(e) => setEmail(e.target.value)}
                 className="h-12 rounded-xl bg-secondary/40 border-border focus-visible:border-[#CCF96C] focus-visible:ring-0 flex-1 min-w-0 text-foreground placeholder:text-muted-foreground/70"
               />
-              <select
-                value={eventType}
-                onChange={(e) => setEventType(e.target.value)}
-                className="h-12 rounded-xl border border-border bg-secondary/40 px-3 text-sm text-foreground focus:outline-none focus:border-[#CCF96C] sm:w-44 shrink-0"
-              >
-                <option value="">Тип события</option>
-                <option value="Конференция">Конференция</option>
-                <option value="Форум">Форум</option>
-                <option value="Воркшоп">Воркшоп</option>
-                <option value="Корпоратив">Корпоратив</option>
-                <option value="Концерт / фестиваль">Концерт / фестиваль</option>
-                <option value="Другое">Другое</option>
-              </select>
-              <select
-                value={participants}
-                onChange={(e) => setParticipants(e.target.value)}
-                className="h-12 rounded-xl border border-border bg-secondary/40 px-3 text-sm text-foreground focus:outline-none focus:border-[#CCF96C] sm:w-40 shrink-0"
-              >
-                <option value="">Участников</option>
-                <option value="до 50">до 50</option>
-                <option value="50–200">50–200</option>
-                <option value="200–500">200–500</option>
-                <option value="500–2000">500–2000</option>
-                <option value="2000+">2000+</option>
-              </select>
+              <Select value={eventType} onValueChange={setEventType}>
+                <SelectTrigger className="h-12 rounded-xl border-border bg-secondary/40 text-sm sm:w-44 shrink-0 focus:ring-0 focus:border-[#CCF96C]">
+                  <SelectValue placeholder="Тип события" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Конференция">Конференция</SelectItem>
+                  <SelectItem value="Форум">Форум</SelectItem>
+                  <SelectItem value="Воркшоп">Воркшоп</SelectItem>
+                  <SelectItem value="Корпоратив">Корпоратив</SelectItem>
+                  <SelectItem value="Концерт / фестиваль">Концерт / фестиваль</SelectItem>
+                  <SelectItem value="Другое">Другое</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select value={participants} onValueChange={setParticipants}>
+                <SelectTrigger className="h-12 rounded-xl border-border bg-secondary/40 text-sm sm:w-40 shrink-0 focus:ring-0 focus:border-[#CCF96C]">
+                  <SelectValue placeholder="Участников" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="до 50">до 50</SelectItem>
+                  <SelectItem value="50–200">50–200</SelectItem>
+                  <SelectItem value="200–500">200–500</SelectItem>
+                  <SelectItem value="500–2000">500–2000</SelectItem>
+                  <SelectItem value="2000+">2000+</SelectItem>
+                </SelectContent>
+              </Select>
               <Button type="submit" size="lg" className="h-12 rounded-xl px-6 text-sm font-medium shadow-md btn-primary-hover shrink-0">
                 Записаться <ArrowRight className="ml-1.5 w-4 h-4" />
               </Button>
@@ -375,7 +382,7 @@ function FaqSection() {
         <div className="mb-10 max-w-2xl">
           <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Частые вопросы</p>
           <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight">
-            Вопросы и ответы
+            Разберём <span className="gradient-text">заранее</span>.
           </h2>
         </div>
         <div className="max-w-3xl divide-y divide-border/60">
@@ -778,7 +785,7 @@ function DemoSection() {
                 "Участие в формировании продукта",
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3 text-foreground">
-                  <CheckCircle2 className="w-5 h-5 text-muted-foreground shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
                   <span className="font-medium">{item}</span>
                 </div>
               ))}
