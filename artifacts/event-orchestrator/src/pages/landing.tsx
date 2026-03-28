@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { 
   QrCode, BarChart3, Bell, Users, 
   ShieldCheck, ArrowRight, CheckCircle2, 
-  Workflow, CalendarDays, TrendingUp, Target
+  Workflow, CalendarDays, TrendingUp, Target,
+  Menu, X
 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -84,6 +85,7 @@ export default function LandingPage() {
         <HowItWorksSection />
         <FeaturesSection />
         <MetricsSection />
+        <PricingSection />
         <DemoSection />
       </main>
       <Footer />
@@ -93,12 +95,15 @@ export default function LandingPage() {
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const closeMenu = () => setMobileOpen(false);
 
   return (
     <header
@@ -116,6 +121,7 @@ function Navbar() {
             <span className="text-[10px] text-muted-foreground tracking-widest uppercase font-medium">Event Operating System</span>
           </div>
         </Link>
+
         <nav className="hidden md:flex items-center gap-8">
           <a href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Как работает</a>
           <a href="#features" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Возможности</a>
@@ -124,7 +130,32 @@ function Navbar() {
             <a href="#demo">Запросить демо</a>
           </Button>
         </nav>
+
+        <button
+          className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg text-foreground hover:bg-foreground/8 transition-colors"
+          onClick={() => setMobileOpen((v) => !v)}
+          aria-label="Меню"
+        >
+          {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
       </div>
+
+      {mobileOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.18 }}
+          className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border/50 px-6 py-4 flex flex-col gap-4"
+        >
+          <a href="#how-it-works" onClick={closeMenu} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1">Как работает</a>
+          <a href="#features" onClick={closeMenu} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1">Возможности</a>
+          <a href="#metrics" onClick={closeMenu} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1">Результаты</a>
+          <Button asChild size="sm" className="rounded-full w-full mt-1">
+            <a href="#demo" onClick={closeMenu}>Запросить демо</a>
+          </Button>
+        </motion.div>
+      )}
     </header>
   );
 }
@@ -480,6 +511,36 @@ function MetricsSection() {
             </motion.div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+function PricingSection() {
+  return (
+    <section className="py-16 bg-secondary/30">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="max-w-2xl"
+        >
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Стоимость</p>
+          <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-6">
+            Сколько стоит EOS?
+          </h2>
+          <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+            Стоимость зависит от масштаба события, количества участников и частоты запусков. Готового прайса нет — каждый организатор получает расчёт под свой формат.
+          </p>
+          <p className="text-base text-muted-foreground/70 leading-relaxed mb-8">
+            Одно событие на 200 человек обходится дешевле, чем один повторный запуск рекламы на ту же аудиторию.
+          </p>
+          <Button asChild size="lg" className="rounded-xl px-8 shadow-md btn-primary-hover">
+            <a href="#demo">Получить расчёт <ArrowRight className="ml-2 w-4 h-4" /></a>
+          </Button>
+        </motion.div>
       </div>
     </section>
   );
