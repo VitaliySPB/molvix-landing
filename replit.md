@@ -52,11 +52,35 @@ Every package extends `tsconfig.base.json` which sets `composite: true`. The roo
 
 ### `artifacts/event-orchestrator` (`@workspace/event-orchestrator`)
 
-React + Vite landing page for Event Orchestrator product. Single-page site with:
-- Hero section, social proof bar, "How it works" steps, features grid
-- Demo request form (name, email, company, role, message) — submits to `/api/demo-requests`
-- Smooth scroll navigation, framer-motion animations, lucide-react icons
-- Fonts: Inter (body) + Outfit (display), minimal monochrome palette
+Russian-language B2B SaaS marketing landing page for **EOS — Event Operating System** (event management platform for Russia/CIS organizers). PAS copywriting, typography-driven, no hero images.
+
+Sections (in order): Hero → ForWho → Problem → HowItWorks → Features → Metrics → Pricing → FAQ → Demo
+
+- **Hero**: H1 "Вы платите ₽4000 за участника." + muted line. Quick lead capture form (email + event type + participants count + submit). Lead stored via `/api/event-leads`.
+- **ForWhoSection**: 4 audience segment cards (конференции, корпоративы, образование, концерты)
+- **ProblemSection**: pain stats — 15-20% email open rate, 3-5 days to Telegram silence, ~0 behavioral data, ~4000₽ per re-acquired attendee. `section-dots` texture bg.
+- **HowItWorksSection**: 3-phase lifecycle (До / В день / После). `section-dots` texture bg.
+- **FeaturesSection**: 6 illustration cards (no icons). Images in `public/illustrations/` — qr-networking, dashboard, push, scoring, funnel, access. Light `#F5F7F2` image bg.
+- **MetricsSection**: 4 animated countup stats (`AnimatedNumber`). Heading uses `gradient-text` CSS class on "актив". `section-dots` texture bg.
+- **PricingSection**: soft CTA (no pricing table), links to Demo.
+- **FaqSection**: 6 accordion Q&As.
+- **DemoSection**: full demo request form (name, email, phone, company/INN, role, message). INN auto-lookup via `/api/company-lookup` → `api-fns.ru` (debounced 500ms, inline state indicator). Submits to `/api/demo-requests`.
+- **Footer**: EOS logo + copyright.
+
+**Navbar**: sticky glass on scroll, burger menu on mobile (framer-motion dropdown). Links: Как работает / Возможности / Результаты / Запросить демо.
+
+**Fonts**: Manrope (display headings) + Inter (body). Loaded in `index.html` + `src/index.css`.
+
+**CSS palette** (`src/index.css`): `--primary` #B8D97A, `--btn-hover` #CCF96C, `--hero-bg` #F7FAF0.
+
+**Base path**: `BASE_PATH = "/"` (see `.replit-artifact/artifact.toml`). Static image paths use `/illustrations/...`.
+
+**API routes** (all under `/api`):
+- `GET /company-lookup?inn=...` → FNS registry lookup (`api-fns.ru`)
+- `POST /event-leads` → stores quick hero form leads
+- `POST /demo-requests` → stores full demo request form
+
+**DB schemas**: `lib/db/src/schema/demoRequests.ts`, `lib/db/src/schema/eventLeads.ts`
 
 ## Packages
 

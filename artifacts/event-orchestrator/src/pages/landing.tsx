@@ -2,9 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { 
-  QrCode, BarChart3, Bell, Users, 
-  ShieldCheck, ArrowRight, CheckCircle2, 
-  Workflow, CalendarDays, TrendingUp, Target,
+  Users, ShieldCheck, ArrowRight, CheckCircle2, 
+  Workflow, CalendarDays, TrendingUp,
   Menu, X
 } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -356,7 +355,7 @@ function FaqSection() {
     },
     {
       q: "Есть ли интеграции с CRM или Bitrix24?",
-      a: "В текущей версии — экспорт контактов в CSV и базовый webhook. Прямая интеграция с Bitrix24 и AmoCRM в роадмапе на Q3 2025."
+      a: "В текущей версии — экспорт контактов в CSV и базовый webhook. Прямая интеграция с Bitrix24 и AmoCRM в роадмапе на Q2 2026."
     },
     {
       q: "Что если участник не хочет сканировать QR?",
