@@ -580,16 +580,16 @@ function FeaturesSection() {
               className="h-full"
             >
               <Card className="overflow-hidden h-full bg-background/50 hover:bg-background border-border/50 hover-elevate transition-colors duration-300">
-                <div className="bg-[#F5F7F2] flex items-center justify-center h-44 px-6">
+                <div className="bg-[#F5F7F2] aspect-[4/3] w-full">
                   <img
                     src={feat.img}
                     alt={feat.title}
-                    className="h-full w-full object-contain"
+                    className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="p-5">
-                  <h3 className="text-base font-display font-semibold mb-2">{feat.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{feat.desc}</p>
+                <div className="px-4 py-3">
+                  <h3 className="text-sm font-display font-semibold mb-1 leading-tight">{feat.title}</h3>
+                  <p className="text-xs text-muted-foreground leading-snug">{feat.desc}</p>
                 </div>
               </Card>
             </motion.div>
