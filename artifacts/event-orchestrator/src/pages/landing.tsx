@@ -544,12 +544,12 @@ function HowItWorksSection() {
 
 function FeaturesSection() {
   const features = [
-    { title: "QR-нетворкинг", desc: "Сканируешь QR человека — он появляется в контактах с полным профилем. Без визиток, без «напиши мне в Telegram».", icon: QrCode },
-    { title: "Live-дашборд", desc: "Сколько людей активны прямо сейчас, посещаемость сессий, вовлечённость, скачивания — в реальном времени.", icon: BarChart3 },
-    { title: "Push-уведомления", desc: "Изменение зала, важное объявление, пауза — мгновенно всем участникам или выбранной группе.", icon: Bell },
-    { title: "Скоринг аудитории", desc: "Каждый участник получает оценку от 0 до 100 по активности. Вы знаете кто «горячий» и готов к следующей покупке.", icon: Target },
-    { title: "Воронка участника", desc: "Приглашён → открыл → зарегистрировался → подтверждён → пришёл. Полная прозрачность на каждом шаге.", icon: TrendingUp },
-    { title: "Безопасный доступ", desc: "Контроль входа в реальном времени, управление доступом к материалам, журнал сканирования QR-кодов.", icon: ShieldCheck },
+    { title: "QR-нетворкинг", desc: "Сканируешь QR человека — он появляется в контактах с полным профилем. Без визиток, без «напиши мне в Telegram».", img: "/illustrations/qr-networking.png" },
+    { title: "Live-дашборд", desc: "Сколько людей активны прямо сейчас, посещаемость сессий, вовлечённость, скачивания — в реальном времени.", img: "/illustrations/dashboard.png" },
+    { title: "Push-уведомления", desc: "Изменение зала, важное объявление, пауза — мгновенно всем участникам или выбранной группе.", img: "/illustrations/push.png" },
+    { title: "Скоринг аудитории", desc: "Каждый участник получает оценку от 0 до 100 по активности. Вы знаете кто «горячий» и готов к следующей покупке.", img: "/illustrations/scoring.png" },
+    { title: "Воронка участника", desc: "Приглашён → открыл → зарегистрировался → подтверждён → пришёл. Полная прозрачность на каждом шаге.", img: "/illustrations/funnel.png" },
+    { title: "Безопасный доступ", desc: "Контроль входа в реальном времени, управление доступом к материалам, журнал сканирования QR-кодов.", img: "/illustrations/access.png" },
   ];
 
   return (
@@ -578,13 +578,20 @@ function FeaturesSection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
+              className="h-full"
             >
-              <Card className="p-5 h-full bg-background/50 hover:bg-background border-border/50 hover-elevate transition-colors duration-300">
-                <div className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-foreground/8 mb-4">
-                  <feat.icon className="w-4 h-4 text-foreground/70" />
+              <Card className="overflow-hidden h-full bg-background/50 hover:bg-background border-border/50 hover-elevate transition-colors duration-300">
+                <div className="bg-[#F5F7F2] flex items-center justify-center h-44 px-6">
+                  <img
+                    src={feat.img}
+                    alt={feat.title}
+                    className="h-full w-full object-contain"
+                  />
                 </div>
-                <h3 className="text-base font-display font-semibold mb-2">{feat.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{feat.desc}</p>
+                <div className="p-5">
+                  <h3 className="text-base font-display font-semibold mb-2">{feat.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{feat.desc}</p>
+                </div>
               </Card>
             </motion.div>
           ))}
