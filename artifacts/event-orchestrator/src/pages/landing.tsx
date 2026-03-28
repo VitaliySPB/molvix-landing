@@ -59,12 +59,12 @@ function AnimatedNumber({ value, suffix = "", prefix = "" }: { value: number; su
 
   useEffect(() => {
     if (!started || value === 0) return;
-    const duration = 1400;
+    const duration = 2800;
     const startTime = Date.now();
     const tick = () => {
       const elapsed = Date.now() - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
+      const eased = 1 - Math.pow(1 - progress, 4);
       setCount(Math.round(eased * value));
       if (progress < 1) requestAnimationFrame(tick);
     };
