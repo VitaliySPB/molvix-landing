@@ -1007,8 +1007,8 @@ function Footer() {
           <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Контакт</p>
           <ul className="space-y-2">
             <li>
-              <a href="mailto:hello@eos-app.ru" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                hello@eos-app.ru
+              <a href="mailto:info@molvix.ru" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                info@molvix.ru
               </a>
             </li>
             <li>
