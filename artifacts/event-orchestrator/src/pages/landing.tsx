@@ -124,10 +124,7 @@ function Navbar() {
           <div className="w-8 h-8 bg-primary text-primary-foreground rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
             <Workflow className="w-4 h-4" />
           </div>
-          <div className="flex flex-col leading-none">
-            <span className="font-display font-semibold text-base tracking-tight">EOS</span>
-            <span className="text-[10px] text-muted-foreground tracking-widest uppercase font-medium">Event Operating System</span>
-          </div>
+          <span className="font-display font-semibold text-base tracking-tight">MOLVIX</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -218,7 +215,7 @@ function HeroSection() {
           </p>
 
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mb-7">
-            EOS — платформа, которая превращает разовое событие в постоянную базу контактов. Вы знаете кто вернётся — ещё до следующего события.
+            MOLVIX — платформа, которая превращает разовое событие в постоянную базу контактов. Вы знаете кто вернётся — ещё до следующего события.
           </p>
 
           <div className="max-w-3xl">
@@ -325,7 +322,7 @@ function ForWhoSection() {
         <div className="mb-10">
           <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Для кого</p>
           <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight">
-            EOS подходит, если вы проводите <span className="gradient-text">события</span>.
+            MOLVIX подходит, если вы проводите <span className="gradient-text">события</span>.
           </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -381,7 +378,7 @@ function FaqSection() {
       a: "Бумажный бейдж остаётся опцией. Но на практике QR-нетворкинг — одна из самых популярных фич: люди обменивают контакты прямо на ивенте без визиток и Telegram."
     },
     {
-      q: "Работает ли EOS без интернета на площадке?",
+      q: "Работает ли MOLVIX без интернета на площадке?",
       a: "Программа события и материалы кэшируются в приложении — доступны офлайн. QR-регистрация и нетворкинг требуют соединения. Для крупных площадок рекомендуем отдельную точку Wi-Fi."
     },
   ];
@@ -450,7 +447,7 @@ function ProblemSection() {
               Следующее событие начинается с той же точки — заново покупая ту же аудиторию. Это не проблема удержания. Это сломанная механика.
             </p>
             <p className="text-base text-foreground/60 leading-relaxed italic border-l-2 border-border pl-4">
-              Удержать аудиторию нельзя «включить» после события — если до и во время ничего не было сделано. EOS работает на всех трёх фазах именно поэтому.
+              Удержать аудиторию нельзя «включить» после события — если до и во время ничего не было сделано. MOLVIX работает на всех трёх фазах именно поэтому.
             </p>
           </div>
 
@@ -517,7 +514,7 @@ function HowItWorksSection() {
             Каждая фаза — необходимое условие для следующей. Если участник не получил ценность в день события — он не вернётся после.
           </p>
           <p className="text-base text-muted-foreground/60">
-            Вот как EOS встраивается в каждый этап — не перестраивая процесс, а закрывая то, чего в нём не хватало.
+            Вот как MOLVIX встраивается в каждый этап — не перестраивая процесс, а закрывая то, чего в нём не хватало.
           </p>
         </div>
 
@@ -681,7 +678,7 @@ function PricingSection() {
           >
             <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Стоимость</p>
             <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-6">
-              Сколько стоит <span className="gradient-text">EOS</span>?
+              Сколько стоит <span className="gradient-text">MOLVIX</span>?
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               Стоимость зависит от масштаба события, количества участников и частоты запусков. Каждый организатор получает расчёт под свой формат.
@@ -713,7 +710,7 @@ function PricingSection() {
           >
             <img
               src="/illustrations/pricing.png"
-              alt="Расчёт стоимости EOS"
+              alt="Расчёт стоимости MOLVIX"
               className="w-full max-w-sm rounded-2xl"
             />
           </motion.div>
@@ -792,7 +789,7 @@ function DemoSection() {
               Станьте одним из <span className="gradient-text">первых</span>.
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed mb-4">
-              EOS — единственная платформа, которая удерживает аудиторию до, во время и после мероприятия. Без нового бюджета на рекламу.
+              MOLVIX — единственная платформа, которая удерживает аудиторию до, во время и после мероприятия. Без нового бюджета на рекламу.
             </p>
             <p className="text-base text-muted-foreground/70 leading-relaxed mb-10">
               Один разговор меняет понимание того, что вообще возможно с вашей аудиторией — до, во время и после события.
@@ -986,10 +983,7 @@ function Footer() {
             <div className="w-7 h-7 bg-primary text-primary-foreground rounded-lg flex items-center justify-center">
               <Workflow className="w-4 h-4" />
             </div>
-            <div className="flex flex-col leading-none">
-              <span className="font-display font-semibold tracking-tight text-sm">EOS</span>
-              <span className="text-[10px] text-muted-foreground tracking-widest uppercase">Event Operating System</span>
-            </div>
+            <span className="font-display font-semibold tracking-tight text-sm">MOLVIX</span>
           </div>
           <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
             Превращаем разовое событие в постоянную базу контактов.
@@ -1028,7 +1022,7 @@ function Footer() {
 
       <div className="border-t border-border/30 max-w-7xl mx-auto px-6 md:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
         <p className="text-muted-foreground text-xs">
-          © {new Date().getFullYear()} EOS. Все права защищены.
+          © {new Date().getFullYear()} MOLVIX. Все права защищены.
         </p>
         <a href="#" className="text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors">
           Политика конфиденциальности
