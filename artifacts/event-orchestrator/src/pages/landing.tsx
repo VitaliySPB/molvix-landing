@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { 
   Users, ShieldCheck, ArrowRight, CheckCircle2, 
-  Workflow, CalendarDays, TrendingUp,
+  CalendarDays, TrendingUp,
   Menu, X, Briefcase, BookOpen, Music
 } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -121,11 +121,11 @@ function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className={`w-8 h-8 rounded-lg flex items-center justify-center group-hover:rotate-12 transition-all duration-300 ${
-            scrolled ? "bg-primary text-primary-foreground" : "bg-white/20 text-white"
-          }`}>
-            <Workflow className="w-4 h-4" />
-          </div>
+          <img
+            src="/logo.jpg"
+            alt="MOLVIX"
+            className="w-9 h-9 rounded-lg object-cover group-hover:scale-105 transition-transform duration-300"
+          />
           <span className={`font-display font-semibold text-base tracking-tight transition-colors duration-300 ${
             scrolled ? "text-foreground" : "text-white"
           }`}>MOLVIX</span>
@@ -990,9 +990,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <div className="w-7 h-7 bg-primary text-primary-foreground rounded-lg flex items-center justify-center">
-              <Workflow className="w-4 h-4" />
-            </div>
+            <img src="/logo.jpg" alt="MOLVIX" className="w-7 h-7 rounded-md object-cover" />
             <span className="font-display font-semibold tracking-tight text-sm">MOLVIX</span>
           </div>
           <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
