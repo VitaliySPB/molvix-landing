@@ -121,24 +121,32 @@ function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 bg-primary text-primary-foreground rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
+          <div className={`w-8 h-8 rounded-lg flex items-center justify-center group-hover:rotate-12 transition-all duration-300 ${
+            scrolled ? "bg-primary text-primary-foreground" : "bg-white/20 text-white"
+          }`}>
             <Workflow className="w-4 h-4" />
           </div>
-          <span className="font-display font-semibold text-base tracking-tight">MOLVIX</span>
+          <span className={`font-display font-semibold text-base tracking-tight transition-colors duration-300 ${
+            scrolled ? "text-foreground" : "text-white"
+          }`}>MOLVIX</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Как работает</a>
-          <a href="#features" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Возможности</a>
-          <a href="#metrics" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Результаты</a>
-          <a href="#pricing" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Стоимость</a>
-          <Button asChild size="sm" className="rounded-full px-6 shadow-sm">
+          <a href="#how-it-works" className={`text-sm font-medium transition-colors duration-300 ${scrolled ? "text-muted-foreground hover:text-foreground" : "text-white/70 hover:text-white"}`}>Как работает</a>
+          <a href="#features" className={`text-sm font-medium transition-colors duration-300 ${scrolled ? "text-muted-foreground hover:text-foreground" : "text-white/70 hover:text-white"}`}>Возможности</a>
+          <a href="#metrics" className={`text-sm font-medium transition-colors duration-300 ${scrolled ? "text-muted-foreground hover:text-foreground" : "text-white/70 hover:text-white"}`}>Результаты</a>
+          <a href="#pricing" className={`text-sm font-medium transition-colors duration-300 ${scrolled ? "text-muted-foreground hover:text-foreground" : "text-white/70 hover:text-white"}`}>Стоимость</a>
+          <Button asChild size="sm" className={`rounded-full px-6 shadow-sm transition-all duration-300 ${
+            !scrolled ? "bg-white text-[#1E1B4B] hover:bg-white/90 border-0" : ""
+          }`}>
             <a href="#demo">Запросить демо</a>
           </Button>
         </nav>
 
         <button
-          className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg text-foreground hover:bg-foreground/8 transition-colors"
+          className={`md:hidden flex items-center justify-center w-9 h-9 rounded-lg transition-colors ${
+            scrolled ? "text-foreground hover:bg-foreground/8" : "text-white hover:bg-white/10"
+          }`}
           onClick={() => setMobileOpen((v) => !v)}
           aria-label="Меню"
         >
@@ -152,13 +160,15 @@ function Navbar() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.18 }}
-          className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border/50 px-6 py-4 flex flex-col gap-4"
+          className={`md:hidden backdrop-blur-xl border-b px-6 py-4 flex flex-col gap-4 ${
+            scrolled ? "bg-background/95 border-border/50" : "bg-[#1E1B4B]/95 border-white/10"
+          }`}
         >
-          <a href="#how-it-works" onClick={closeMenu} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1">Как работает</a>
-          <a href="#features" onClick={closeMenu} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1">Возможности</a>
-          <a href="#metrics" onClick={closeMenu} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1">Результаты</a>
-          <a href="#pricing" onClick={closeMenu} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1">Стоимость</a>
-          <Button asChild size="sm" className="rounded-full w-full mt-1">
+          <a href="#how-it-works" onClick={closeMenu} className={`text-sm font-medium transition-colors py-1 ${scrolled ? "text-muted-foreground hover:text-foreground" : "text-white/70 hover:text-white"}`}>Как работает</a>
+          <a href="#features" onClick={closeMenu} className={`text-sm font-medium transition-colors py-1 ${scrolled ? "text-muted-foreground hover:text-foreground" : "text-white/70 hover:text-white"}`}>Возможности</a>
+          <a href="#metrics" onClick={closeMenu} className={`text-sm font-medium transition-colors py-1 ${scrolled ? "text-muted-foreground hover:text-foreground" : "text-white/70 hover:text-white"}`}>Результаты</a>
+          <a href="#pricing" onClick={closeMenu} className={`text-sm font-medium transition-colors py-1 ${scrolled ? "text-muted-foreground hover:text-foreground" : "text-white/70 hover:text-white"}`}>Стоимость</a>
+          <Button asChild size="sm" className={`rounded-full w-full mt-1 ${!scrolled ? "bg-white text-[#1E1B4B] hover:bg-white/90 border-0" : ""}`}>
             <a href="#demo" onClick={closeMenu}>Запросить демо</a>
           </Button>
         </motion.div>
@@ -188,7 +198,7 @@ function HeroSection() {
   };
 
   return (
-    <section className="relative pt-20 pb-8 flex items-center hero-bg">
+    <section className="relative pt-20 pb-12 flex items-center hero-bg">
       <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -196,25 +206,25 @@ function HeroSection() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-5xl"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/80 border border-border/50 text-sm font-medium text-muted-foreground mb-5">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm font-medium text-white/70 mb-5">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-foreground opacity-20"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-foreground"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
             </span>
             Превратите разовое событие в постоянный источник клиентов
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-medium tracking-tight text-foreground leading-[1.2] mb-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-medium tracking-tight text-white leading-[1.2] mb-4">
             Вы платите ₽4000 за участника.
             <br />
-            <span className="text-muted-foreground">Через неделю не знаете <span className="whitespace-nowrap">ни одного по имени.</span></span>
+            <span className="text-white/50">Через неделю не знаете <span className="whitespace-nowrap">ни одного по имени.</span></span>
           </h1>
 
-          <p className="text-xl md:text-2xl font-display font-medium text-foreground/80 leading-snug max-w-3xl mb-4">
+          <p className="text-xl md:text-2xl font-display font-medium text-white/80 leading-snug max-w-3xl mb-4">
             Событие длится один день. Отношения с аудиторией — годами.
           </p>
 
-          <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mb-7">
+          <p className="text-base md:text-lg text-white/60 leading-relaxed max-w-3xl mb-7">
             MOLVIX — платформа, которая превращает разовое событие в постоянную базу контактов. Вы знаете кто вернётся — ещё до следующего события.
           </p>
 
@@ -223,14 +233,14 @@ function HeroSection() {
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-secondary border border-border/60 text-foreground font-medium"
+              className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-white/10 border border-white/20 text-white font-medium"
             >
               <CheckCircle2 className="w-5 h-5 shrink-0" />
               Заявка принята — свяжемся в ближайшее время
             </motion.div>
           ) : (
-            <div className="bg-background/80 backdrop-blur-sm border border-border/60 rounded-2xl p-4 shadow-[0_4px_24px_rgba(0,0,0,0.08)]">
-              <p className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wider">Получить доступ</p>
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-4 shadow-[0_4px_40px_rgba(0,0,0,0.25)]">
+              <p className="text-xs font-medium text-white/50 mb-3 uppercase tracking-wider">Получить доступ</p>
               <form onSubmit={handleLeadSubmit} className="flex flex-col sm:flex-row gap-3">
               <Input
                 type="email"
@@ -238,11 +248,11 @@ function HeroSection() {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="h-12 rounded-xl bg-secondary/40 border-border focus-visible:border-[#CCF96C] focus-visible:ring-0 flex-1 min-w-0 text-foreground placeholder:text-muted-foreground/70"
+                className="h-12 rounded-xl bg-white/10 border-white/20 focus-visible:border-white/60 focus-visible:ring-0 flex-1 min-w-0 text-white placeholder:text-white/40"
               />
               <Select value={eventType} onValueChange={setEventType}>
-                <SelectTrigger className="h-12 rounded-xl border-border bg-secondary/40 text-sm sm:w-44 shrink-0 focus:ring-0 focus:border-[#CCF96C]">
-                  <SelectValue placeholder="Тип события" />
+                <SelectTrigger className="h-12 rounded-xl border-white/20 bg-white/10 text-white/80 text-sm sm:w-44 shrink-0 focus:ring-0 focus:border-white/60 [&>svg]:text-white/50">
+                  <SelectValue placeholder="Тип события" className="text-white/40" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="Конференция">Конференция</SelectItem>
@@ -254,8 +264,8 @@ function HeroSection() {
                 </SelectContent>
               </Select>
               <Select value={participants} onValueChange={setParticipants}>
-                <SelectTrigger className="h-12 rounded-xl border-border bg-secondary/40 text-sm sm:w-40 shrink-0 focus:ring-0 focus:border-[#CCF96C]">
-                  <SelectValue placeholder="Участников" />
+                <SelectTrigger className="h-12 rounded-xl border-white/20 bg-white/10 text-white/80 text-sm sm:w-40 shrink-0 focus:ring-0 focus:border-white/60 [&>svg]:text-white/50">
+                  <SelectValue placeholder="Участников" className="text-white/40" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="до 50">до 50</SelectItem>
@@ -265,7 +275,7 @@ function HeroSection() {
                   <SelectItem value="2000+">2000+</SelectItem>
                 </SelectContent>
               </Select>
-              <Button type="submit" size="lg" className="h-12 rounded-xl px-6 text-sm font-medium shadow-md btn-primary-hover shrink-0">
+              <Button type="submit" size="lg" className="h-12 rounded-xl px-6 text-sm font-semibold shadow-md bg-white text-[#1E1B4B] hover:bg-white/90 border-0 shrink-0">
                 Записаться <ArrowRight className="ml-1.5 w-4 h-4" />
               </Button>
             </form>
@@ -273,11 +283,11 @@ function HeroSection() {
           )}
 
           <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-4">
-            <p className="text-sm text-muted-foreground flex items-center gap-2">
+            <p className="text-sm text-white/60 flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 shrink-0" />
               Уже 12 организаторов в листе ожидания
             </p>
-            <a href="#how-it-works" className="text-sm text-muted-foreground/70 hover:text-foreground transition-colors flex items-center gap-1">
+            <a href="#how-it-works" className="text-sm text-white/40 hover:text-white/70 transition-colors flex items-center gap-1">
               Как это работает <ArrowRight className="w-3.5 h-3.5" />
             </a>
           </div>
