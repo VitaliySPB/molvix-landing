@@ -606,11 +606,11 @@ function FeaturesSection() {
               className="h-full"
             >
               <Card className="overflow-hidden h-full bg-background/50 hover:bg-background border-border/50 hover-elevate transition-colors duration-300">
-                <div className="bg-[#F5F7F2] aspect-[4/3] w-full">
+                <div className="bg-[#EEEEF8] aspect-[4/3] w-full">
                   <img
                     src={feat.img}
                     alt={feat.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover illustration-brand"
                   />
                 </div>
                 <div className="px-4 py-3">
@@ -721,7 +721,7 @@ function PricingSection() {
             <img
               src="/illustrations/pricing.png"
               alt="Расчёт стоимости MOLVIX"
-              className="w-full max-w-sm rounded-2xl"
+              className="w-full max-w-sm rounded-2xl illustration-brand"
             />
           </motion.div>
         </div>
