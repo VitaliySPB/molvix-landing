@@ -215,7 +215,7 @@ function HeroSection() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-medium tracking-tight text-white leading-[1.2] mb-4">
-            Вы платите ₽4000 за участника.
+            Вы платите &gt;4000 ₽ за участника.
             <br />
             <span className="text-white/50">Через неделю не знаете <span className="whitespace-nowrap">ни одного по имени.</span></span>
           </h1>
