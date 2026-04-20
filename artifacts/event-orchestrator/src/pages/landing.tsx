@@ -676,6 +676,12 @@ function MetricsSection() {
 }
 
 function PricingSection() {
+  const betaPerks = [
+    { label: "Бесплатный доступ", desc: "На всё время бета-тестирования — без оплаты, без карты" },
+    { label: "Сохранённый тариф", desc: "После релиза вы платите по специальным партнёрским условиям" },
+    { label: "Приоритетная поддержка", desc: "Прямой контакт с командой и влияние на развитие продукта" },
+  ];
+
   return (
     <section id="pricing" className="py-16 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -686,29 +692,31 @@ function PricingSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Стоимость</p>
+            <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-4">Бета-доступ</p>
             <h2 className="text-4xl md:text-5xl font-display font-medium tracking-tight mb-6">
-              Сколько стоит <span className="gradient-text">MOLVIX</span>?
+              Сейчас — <span className="gradient-text">бесплатно</span>.
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              Стоимость зависит от масштаба события, количества участников и частоты запусков. Каждый организатор получает расчёт под свой формат.
+            <p className="text-lg text-muted-foreground leading-relaxed mb-3">
+              Мы ищем организаторов профессиональных событий: от&nbsp;20&nbsp;участников, с&nbsp;ближайшим мероприятием в&nbsp;течение 2–3&nbsp;месяцев.
+            </p>
+            <p className="text-base text-muted-foreground/70 leading-relaxed mb-8">
+              Вы получаете полный доступ бесплатно на время беты, а&nbsp;после релиза — статус партнёра: сохранённый тариф и&nbsp;приоритетная поддержка навсегда.
             </p>
 
-            <div className="grid grid-cols-3 gap-3 mb-8">
-              {[
-                { label: "до 200 уч.", price: "от 15 000 ₽" },
-                { label: "200–1000 уч.", price: "от 35 000 ₽" },
-                { label: "1000+ уч.", price: "Индивидуально" },
-              ].map((tier) => (
-                <div key={tier.label} className="rounded-xl border border-border/60 bg-background/60 px-3 py-3 text-center">
-                  <p className="text-[11px] text-muted-foreground mb-1 leading-tight">{tier.label}</p>
-                  <p className="text-sm font-semibold font-display leading-tight">{tier.price}</p>
+            <div className="flex flex-col gap-3 mb-8">
+              {betaPerks.map((perk) => (
+                <div key={perk.label} className="flex items-start gap-3 rounded-xl border border-border/60 bg-background/60 px-4 py-3">
+                  <div className="mt-0.5 w-2 h-2 rounded-full bg-[#1E1B4B] shrink-0" />
+                  <div>
+                    <p className="text-sm font-semibold font-display leading-tight">{perk.label}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5 leading-snug">{perk.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
 
             <Button asChild size="lg" className="rounded-xl px-8 shadow-md btn-primary-hover">
-              <a href="#demo">Получить точный расчёт <ArrowRight className="ml-2 w-4 h-4" /></a>
+              <a href="#demo">Стать партнёром беты <ArrowRight className="ml-2 w-4 h-4" /></a>
             </Button>
           </motion.div>
           <motion.div
@@ -720,7 +728,7 @@ function PricingSection() {
           >
             <img
               src="/illustrations/pricing.png"
-              alt="Расчёт стоимости MOLVIX"
+              alt="Бета-доступ MOLVIX"
               className="w-full max-w-sm rounded-2xl illustration-brand"
             />
           </motion.div>
