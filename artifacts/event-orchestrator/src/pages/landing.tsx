@@ -124,7 +124,7 @@ function Navbar() {
           <img
             src="/logo.jpg"
             alt="MOLVIX"
-            className="w-9 h-9 rounded-lg object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-9 h-9 rounded-lg object-contain bg-[#1E1B4B] group-hover:scale-105 transition-transform duration-300"
           />
           <span className={`font-display font-semibold text-base tracking-tight transition-colors duration-300 ${
             scrolled ? "text-foreground" : "text-white"
@@ -990,7 +990,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <img src="/logo.jpg" alt="MOLVIX" className="w-7 h-7 rounded-md object-cover" />
+            <img src="/logo.jpg" alt="MOLVIX" className="w-8 h-8 rounded-md object-contain bg-[#1E1B4B]" />
             <span className="font-display font-semibold tracking-tight text-sm">MOLVIX</span>
           </div>
           <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
