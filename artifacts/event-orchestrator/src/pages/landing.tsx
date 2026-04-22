@@ -215,7 +215,7 @@ function HeroSection() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-medium tracking-tight text-white leading-[1.2] mb-4">
-            Вы платите &gt;4000 ₽ за участника.
+            Вы платите более 4000 ₽ за участника.
             <br />
             <span className="text-white/50">Через неделю не знаете <span className="whitespace-nowrap">ни одного по имени.</span></span>
           </h1>
@@ -744,7 +744,7 @@ function DemoSection() {
   const { toast } = useToast();
   const [isSuccess, setIsSuccess] = useState(false);
   const [innLookupState, setInnLookupState] = useState<InnLookupState>("idle");
-  const innLookupTimer = useState<ReturnType<typeof setTimeout> | null>(null);
+  const innLookupTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const form = useForm<DemoFormValues>({
     resolver: zodResolver(demoFormSchema),
@@ -755,7 +755,7 @@ function DemoSection() {
 
   const handleCompanyChange = (value: string, onChange: (v: string) => void) => {
     onChange(value);
-    if (innLookupTimer[0]) clearTimeout(innLookupTimer[0]);
+    if (innLookupTimer.current) clearTimeout(innLookupTimer.current);
 
     const isInn = /^\d{10}$/.test(value.trim()) || /^\d{12}$/.test(value.trim());
     if (!isInn) {
@@ -764,7 +764,7 @@ function DemoSection() {
     }
 
     setInnLookupState("loading");
-    innLookupTimer[0] = setTimeout(async () => {
+    innLookupTimer.current = setTimeout(async () => {
       try {
         const resp = await fetch(`/api/company-lookup?inn=${value.trim()}`);
         if (!resp.ok) { setInnLookupState("not-found"); return; }
